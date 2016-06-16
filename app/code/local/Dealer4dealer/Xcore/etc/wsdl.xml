@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"
+                    schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <!-- Bugfix for Magento 1.6 -->
+            <complexType name="associativeMultiEntity">
+                <all>
+                    <element name="key" type="xsd:string"/>
+                    <element name="value" type="typens:ArrayOfString"/>
+                </all>
+            </complexType>
+            <complexType name="associativeMultiArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:associativeMultiEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <!-- Extra fields for existing calls -->
+            <complexType name="catalogProductReturnEntity">
+                <all>
+                    <element name="tax_rate" type="xsd:float" minOccurs="0"/>
+                </all>
+            </complexType>
+            <complexType name="salesOrderEntity">
+                <all>
+                    <element name="payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" minOccurs="0" />
+                </all>
+            </complexType>
+            <!-- Custom calls -->
+            <complexType name="xcoreSalesOrderPaymentFeeArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreSalesOrderPaymentFee[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreSalesOrderPaymentFee">
+                <all>
+                    <element name="base_amount" type="xsd:double" minOccurs="1" />
+                    <element name="amount" type="xsd:double" minOccurs="1" />
+                    <element name="tax_rate" type="xsd:double" minOccurs="1" />
+                    <element name="title" type="xsd:string" minOccurs="1" />
+                </all>
+            </complexType>
+            <complexType name="xcoreCatalogProductUpdateTierArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreCatalogProductUpdateTierEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreCatalogProductUpdateTierEntity">
+                <all>
+                    <element name="sku" type="xsd:string" />
+                    <element name="tierPrices" type="typens:xcoreCatalogProductTierPriceEntityArray" minOccurs="0"/>
+                </all>
+            </complexType>
+            <complexType name="xcoreCatalogProductTierPriceEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreCatalogProductTierPriceEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreCatalogProductTierPriceEntity">
+                <all>
+                    <element name="all_groups" type="xsd:int" minOccurs="0"/>
+                    <element name="customer_group_id" type="xsd:string" minOccurs="0"/>
+                    <element name="qty" type="xsd:int" minOccurs="0"/>
+                    <element name="price" type="xsd:double" minOccurs="0"/>
+                    <element name="website_id" type="xsd:string" minOccurs="0"/>
+                </all>
+            </complexType>
+            <complexType name="catalogProductUpdateTierResult">
+                <all>
+                    <element name="success" type="typens:ArrayOfString"/>
+                    <element name="error" type="typens:catalogProductUpdateTierResultFaultsArray"/>
+                </all>
+            </complexType>
+            <complexType name="catalogProductUpdateTierResultFaultsArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:catalogProductUpdateTierResultFaultEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="catalogProductUpdateTierResultFaultEntity">
+                <all>
+                    <element name="sku" type="xsd:string"/>
+                    <element name="message" type="xsd:string"/>
+                </all>
+            </complexType>
+            <complexType name="xcoreTaxClassProductListResult">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreTaxClassProductListEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreTaxClassProductListEntity">
+                <all>
+                    <element name="tax_class_id" type="xsd:int" minOccurs="1" />
+                    <element name="label" type="xsd:string" minOccurs="1" />
+                </all>
+            </complexType>
+            <complexType name="xcorePaymentMethodListResult">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcorePaymentMethodEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcorePaymentMethodEntity">
+                <all>
+                    <element name="code" type="xsd:string" minOccurs="1" />
+                    <element name="label" type="xsd:string" minOccurs="1" />
+                </all>
+            </complexType>
+        </schema>
+    </types>
+    <message name="xcoreCatalogProductAttributeTierPriceCreateRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="tierprices" type="typens:xcoreCatalogProductUpdateTierArray"/>
+    </message>
+    <message name="xcoreCatalogProductAttributeTierPriceCreateResponse">
+        <part name="result" type="typens:catalogProductUpdatePriceResult"/>
+    </message>
+    <message name="xcoreTaxClassProductListRequest">
+        <part name="sessionId" type="xsd:string"/>
+    </message>
+    <message name="xcoreTaxClassProductListResponse">
+        <part name="result" type="typens:xcoreTaxClassProductListResult"/>
+    </message>
+    <message name="xcoreCustomerTaxClassesListRequest">
+        <part name="sessionId" type="xsd:string"/>
+    </message>
+    <message name="xcoreCustomerTaxClassesListResponse">
+        <part name="taxclasses" type="typens:fieldArray"/>
+    </message>
+    <message name="xcoreCustomerGroupCreateRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="name" type="xsd:string"/>
+        <part name="taxclass" type="xsd:string"/>
+    </message>
+    <message name="xcoreCustomerGroupCreateResponse">
+        <part name="xcoreerGroups" type="typens:fieldArray"/>
+    </message>
+    <message name="xcoreIndexReindexAllRequest">
+        <part name="sessionId" type="xsd:string"/>
+    </message>
+    <message name="xcoreIndexReindexAllResponse">
+        <part name="taxclasses" type="typens:boolean"/>
+    </message>
+     <message name="xcoreIndexReindexRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="start" type="xsd:string"/>
+    </message>
+    <message name="xcoreIndexReindexResponse">
+        <part name="taxclasses" type="typens:boolean"/>
+    </message>
+    <message name="xcoreCatalogProductAttributeSetGroupInfoRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="attributeSetId" type="xsd:int" />
+        <part name="groupName" type="xsd:string" />
+    </message>
+    <message name="xcoreCatalogProductAttributeSetGroupInfoResponse">
+        <part name="attribute_group_id" type="xsd:int" />
+        <part name="attribute_set_id" type="xsd:int" />
+        <part name="attribute_group_name" type="xsd:string" />
+        <part name="sort_order" type="xsd:int" />
+        <part name="default_id" type="xsd:int" />
+    </message>
+    <message name="xcorePaymentMethodListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcorePaymentMethodListResponse">
+        <part name="result" type="typens:xcorePaymentMethodListResult" />
+    </message>
+    <message name="xcoreVersionInfoRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreVersionInfoResponse">
+        <part name="version" type="xsd:string" />
+    </message>
+    <portType name="{{var wsdl.handler}}PortType">
+        <operation name="xcoreCatalogProductAttributeTierPriceCreate">
+            <documentation>Create tier prices</documentation>
+            <input message="typens:xcoreCatalogProductAttributeTierPriceCreateRequest"/>
+            <output message="typens:xcoreCatalogProductAttributeTierPriceCreateResponse"/>
+        </operation>
+        <operation name="xcoreTaxClassProductList">
+            <documentation>Create tier prices</documentation>
+            <input message="typens:xcoreTaxClassProductListRequest"/>
+            <output message="typens:xcoreTaxClassProductListResponse"/>
+        </operation>
+        <operation name="xcoreCustomerTaxClassesList">
+            <documentation>List of product tax classes</documentation>
+            <input message="typens:xcoreCustomerTaxClassesListRequest"/>
+            <output message="typens:xcoreCustomerTaxClassesListResponse"/>
+        </operation>
+        <operation name="xcoreCustomerGroupCreate">
+            <documentation>List of product tax classes</documentation>
+            <input message="typens:xcoreCustomerGroupCreateRequest"/>
+            <output message="typens:xcoreCustomerGroupCreateResponse"/>
+        </operation>
+        <operation name="xcoreIndexReindexAll">
+            <documentation>Paged and sorted list of products</documentation>
+            <input message="typens:xcoreIndexReindexAllRequest"/>
+            <output message="typens:xcoreIndexReindexAllResponse"/>
+        </operation>
+        <operation name="xcoreIndexReindex">
+            <documentation>Paged and sorted list of products</documentation>
+            <input message="typens:xcoreIndexReindexRequest"/>
+            <output message="typens:xcoreIndexReindexResponse"/>
+        </operation>
+        <operation name="xcoreCatalogProductAttributeSetGroupInfo">
+            <documentation>Group Info</documentation>
+            <input message="typens:xcoreCatalogProductAttributeSetGroupInfoRequest"/>
+            <output message="typens:xcoreCatalogProductAttributeSetGroupInfoResponse"/>
+        </operation>
+        <operation name="xcorePaymentMethodList">
+            <documentation>Group Info</documentation>
+            <input message="typens:xcorePaymentMethodListRequest"/>
+            <output message="typens:xcorePaymentMethodListResponse"/>
+        </operation>
+        <operation name="xcoreVersionInfo">
+            <documentation>Group Info</documentation>
+            <input message="typens:xcoreVersionInfoRequest"/>
+            <output message="typens:xcoreVersionInfoResponse"/>
+        </operation>
+    </portType>
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="xcoreCatalogProductAttributeTierPriceCreate">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreTaxClassProductList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomerTaxClassesList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomerGroupCreate">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreIndexReindexAll">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreIndexReindex">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCatalogProductAttributeSetGroupInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcorePaymentMethodList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreVersionInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+</definitions>

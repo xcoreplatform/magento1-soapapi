@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <dealer4dealer_xcore>
+            <version>0.1.1</version>
+        </dealer4dealer_xcore>
+    </modules>
+    <global>
+        <models>
+            <dealer4dealer_xcore>
+                <class>Dealer4dealer_Xcore_Model</class>
+            </dealer4dealer_xcore>
+            <catalog>
+                <rewrite>
+                    <product_api_v2>Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2</product_api_v2>
+                </rewrite>
+            </catalog>
+            <sales>
+                <rewrite>
+                    <order_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Api_V2</order_api_v2>
+                </rewrite>
+            </sales>
+        </models>
+        <helpers>
+            <dealer4dealer_xcore>
+                <class>Dealer4dealer_Xcore_Helper</class>
+            </dealer4dealer_xcore>
+        </helpers>
+    </global>
+</config>

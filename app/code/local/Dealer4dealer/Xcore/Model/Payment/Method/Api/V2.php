@@ -1,0 +1,4 @@
+<?php
+class Dealer4dealer_Xcore_Model_Payment_Method_Api_V2 extends Dealer4dealer_Xcore_Model_Payment_Method_Api
+{
+}

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <api>
+        <resources>
+            <xcore_catalog_product translate="title" module="dealer4dealer_xcore">
+                <model>dealer4dealer_xcore/catalog_product_api</model>
+                <title>Products</title>
+                <methods>
+                    <attributeTierPriceCreate translate="title" module="dealer4dealer_xcore">
+                        <title>Create bulk product tier prices</title>
+                        <acl>catalog/product/update</acl>
+                    </attributeTierPriceCreate>
+                </methods>
+            </xcore_catalog_product>
+            <xcore_tax_class_product>
+                <model>dealer4dealer_xcore/tax_class_product_api</model>
+                <title>Product Tax Classes</title>
+                <methods>
+                    <list translate="title" module="dealer4dealer_xcore">
+                        <method>items</method>
+                        <title>Retrieve a list of product tax classes</title>
+                        <acl>catalog/product/info</acl>
+                    </list>
+                </methods>
+            </xcore_tax_class_product>
+            <xcore_catalog_product_attribute>
+                <model>dealer4dealer_xcore/catalog_product_attribute_api</model>
+                <title>Product Attributes</title>
+                <methods>
+                    <attributeValues translate="title" module="dealer4dealer_xcore">
+                        <title>List of attribute values</title>
+                        <acl>catalog/product/info</acl>
+                    </attributeValues>
+                    <tierPriceCreate translate="title" module="dealer4dealer_xcore">
+                        <title>Add product tier prices</title>
+                        <acl>catalog/product/update</acl>
+                    </tierPriceCreate>
+                </methods>
+                <faults module="dealer4dealer_xcore">
+                    <partially_updated_tierprices>
+                        <code>300</code>
+                        <message>Could not update all</message>
+                    </partially_updated_tierprices>
+                    <invalid_data>
+                        <code>301</code>
+                        <message>Invalid data</message>
+                    </invalid_data>
+                </faults>
+            </xcore_catalog_product_attribute>
+            <xcore_catalog_product_attribute_set module="dealer4dealer_xcore">
+                <model>dealer4dealer_xcore/catalog_product_attribute_set_api</model>
+                <title>Product Attribute Sets</title>
+                <methods>
+                    <groupInfo translate="title" module="dealer4dealer_xcore">
+                        <title>Get the information about a attribute set group</title>
+                        <acl>catalog/product/attribute/set</acl>
+                    </groupInfo>
+                </methods>
+                <faults module="dealer4dealer_xcore">
+                    <not_found>
+                        <code>400</code>
+                        <message>Requested group not found</message>
+                    </not_found>
+                </faults>
+            </xcore_catalog_product_attribute_set>
+            <xcore_customer translate="title" module="dealer4dealer_xcore">
+                <model>dealer4dealer_xcore/customer_api</model>
+                <title>Customers</title>
+                <methods>
+                    <groupCreate translate="title" module="dealer4dealer_xcore">
+                        <title>Create customer group</title>
+                        <acl>customer/update</acl>
+                    </groupCreate>
+                </methods>
+                <faults module="dealer4dealer_xcore">
+                    <tax_classes_not_found>
+                        <code>500</code>
+                        <message>Requested tax classes not found.</message>
+                    </tax_classes_not_found>
+                    <customer_group_not_created>
+                        <code>501</code>
+                        <message>Customer group not created.</message>
+                    </customer_group_not_created>
+                </faults>
+            </xcore_customer>
+            <xcore_index translate="title" module="dealer4dealer_xcore">
+                <model>dealer4dealer_xcore/index_api</model>
+                <title>Indexes</title>
+                <methods>
+                    <reindexAll translate="title" module="dealer4dealer_xcore">
+                        <title>Reindex all indexes</title>
+                    </reindexAll>
+                    <reindex translate="title" module="dealer4dealer_xcore">
+                        <title>Reindex specific index</title>
+                    </reindex>
+                </methods>
+                <faults module="dealer4dealer_xcore">
+                    <reindex_all_failed>
+                        <code>600</code>
+                        <message>Error while reindexing</message>
+                    </reindex_all_failed>
+                    <reindex_failed>
+                        <code>601</code>
+                        <message>Error while reindexing</message>
+                    </reindex_failed>
+                </faults>
+            </xcore_index>
+            <xcore_payment_method>
+                <model>dealer4dealer_xcore/payment_method_api</model>
+                <title>Payment Methods</title>
+                <methods>
+                    <list translate="title" module="dealer4dealer_xcore">
+                        <method>info</method>
+                        <title>Get a list of payment methods</title>
+                        <acl>sales/order</acl>
+                    </list>
+                </methods>
+            </xcore_payment_method>
+            <xcore_version>
+                <model>dealer4dealer_xcore/version_api</model>
+                <title>xCore version</title>
+                <methods>
+                    <info translate="title" module="dealer4dealer_xcore">
+                        <method>info</method>
+                        <title>xCore version</title>
+                        <acl>core/store/info</acl>
+                    </info>
+                </methods>
+            </xcore_version>
+        </resources>
+        <v2>
+            <resources_function_prefix>
+                <xcore_catalog_product>xcoreCatalogProduct</xcore_catalog_product>
+                <xcore_tax_class_product>xcoreTaxClassProduct</xcore_tax_class_product>
+                <xcore_catalog_product_attribute>xcoreCatalogProductAttribute</xcore_catalog_product_attribute>
+                <xcore_customer>xcoreCustomer</xcore_customer>
+                <xcore_index>xcoreIndex</xcore_index>
+                <xcore_czonfig>xcoreConfig</xcore_czonfig>
+                <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet</xcore_catalog_product_attribute_set>
+                <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
+                <xcore_version>xcoreVersion</xcore_version>
+            </resources_function_prefix>
+        </v2>
+    </api>
+</config>

@@ -1,0 +1,4 @@
+<?php
+class Dealer4dealer_Xcore_Model_Catalog_Product_Api extends Mage_Catalog_Model_Product_Api
+{
+}

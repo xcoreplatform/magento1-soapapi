@@ -1,0 +1,3 @@
+<?php
+class Dealer4dealer_Xcore_Model_Version_Api extends Dealer4dealer_Xcore_Model_Version_Api_V2
+{}
