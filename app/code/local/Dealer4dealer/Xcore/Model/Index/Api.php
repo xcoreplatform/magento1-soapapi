@@ -33,14 +33,17 @@ class Dealer4dealer_Xcore_Model_Index_Api extends Mage_Api_Model_Resource_Abstra
     {
         try {
             $process = Mage::getModel('index/indexer')->getProcessByCode($type);
+
             if($process) {
                 $process->reindexAll();
             } else {
-                $this->_fault('reindex_failed', "Reindex of '" . $type . "' failed because not found type.");
+                $this->_fault('reindex_failed', sprintf('Index type %s not found.', $type));
             }
+
         } catch (Exception $e) {
-            $this->_fault('reindex_failed', "Reindex of '" . $type . "' failed because: ". $e);
+            $this->_fault('reindex_failed', sprintf('Error while indexing %s: %s', $type, $e->getMessage()));
         }
+
         return true;
     }
 }
