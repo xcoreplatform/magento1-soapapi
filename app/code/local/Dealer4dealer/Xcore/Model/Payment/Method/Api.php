@@ -1,5 +1,5 @@
 <?php
-class Dealer4dealer_Xcore_Model_Payment_Method_Api extends Mage_Api_Model_Resource_Abstract
+class Dealer4dealer_Xcore_Model_Payment_Method_Api extends  Mage_Api_Model_Resource_Abstract
 {
     /**
      * Get a list of payment methods.

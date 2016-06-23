@@ -10,6 +10,4 @@
  * @method setTitle($title)
  */
 class Dealer4dealer_Xcore_Model_Payment_Fee extends Varien_Object
-{
-    
-}
+{ }

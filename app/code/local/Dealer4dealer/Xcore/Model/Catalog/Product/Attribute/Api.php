@@ -164,23 +164,13 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Attribute_Api extends Mage_Api_M
      */
     private function _result()
     {
-        $class = new stdClass();
-
-        if(empty($this->_faults)) {
+        if (empty($this->_faults)) {
             return true;
-        } else {
-            $message = "Partially updated tierprices: \nSuccessfull updated: \n";
-            if(empty($this->_success))
-                $message .= "None";
-            else
-                $message .= implode(", ",$this->_success);
-            $message .= "\nFailed to update:\n";
-            foreach($this->_faults as $sku => $fault) {
-                $message .= $sku . " - " . $fault . "\n";
-            }
-            $this->_fault('partially_updated_tierprices', $message);
         }
 
-        return $class;
+        $skus = array_keys($this->_faults);
+        $error = sprintf('Could not update tier prices for: %s', implode($skus));
+
+        return $this->_fault('partially_updated_tierprices', $error);
     }
 }
