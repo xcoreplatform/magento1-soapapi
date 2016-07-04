@@ -4,8 +4,7 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
     /**
      * Add payment fees to the sales order api.
      *
-     * To add your own payment fees see https://xcore.dealer4dealer.nl/docs/api/magento/payment-fees/
-     * or follow these steps.
+     * To add your own payment fees follow these steps.
      *
      * 1. Listen for the event dealer4dealer_xcore_sales_order_payment_fee.
      * 2. Fetch the order object in your observer with $observer->getOrder();
