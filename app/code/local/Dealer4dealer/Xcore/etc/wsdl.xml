@@ -33,6 +33,11 @@
                     <element name="payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" minOccurs="0" />
                 </all>
             </complexType>
+            <complexType name="customerAddressEntityItem">
+                <all>
+                    <element name="vat_id" type="xsd:string" minOccurs="0" />
+                </all>
+            </complexType>
             <!-- Custom calls -->
             <complexType name="xcoreSalesOrderPaymentFeeArray">
                 <complexContent>
