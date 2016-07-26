@@ -26,5 +26,10 @@
                 <class>Dealer4dealer_Xcore_Helper</class>
             </dealer4dealer_xcore>
         </helpers>
+        <block>
+            <dealer4dealer_xcore>
+                <class>Dealer4dealer_Xcore_Block</class>
+            </dealer4dealer_xcore>
+        </block>
     </global>
 </config>

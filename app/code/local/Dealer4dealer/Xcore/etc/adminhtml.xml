@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<adminhtml>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <d4d_xcore>
+                                        <title>Dealer4Dealer - xCore</title>
+                                    </d4d_xcore>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</adminhtml>
