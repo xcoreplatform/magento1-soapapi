@@ -2,8 +2,21 @@
 This module extends the soap api of Magento1 and is needed for the usage of the xCore. For more information or support see http://www.dealer4dealer.nl.
 
 ## Payment fees
-To add payment fees (for example surcharges)  to the sales order api follow the following steps:
+To add payment fees (for example surcharges) to the sales order api either use the backend interface
+or add an observer follow the steps below:
 
+### Backend Interface
+You can add simple fee fields via the backend interface.
+Navigate to `System > Configuration > Dealer4Dealer xCore > Payment > Payment Method Fees`
+
+![SysConf tab example](https://raw.githubusercontent.com/dealer4dealer/magento1-soapapi/master/payment_fee_config_tab.png)
+
+- `title`: The name given to the fee in the order data submitted
+- `base amount`: The "sales_flat_order" table column to use for amounts in the installations base currency 
+- `amount`: The "sales_flat_order" table column to use for amounts in the shops currency 
+- `tax rate`: The product class tax rate applied to the fee
+
+### Observer
 1. Listen for the event dealer4dealer_xcore_sales_order_payment_fee.
 2. Fetch the order object in your observer with $observer->getOrder();
 3. Create a new dealer4dealer_xcore/payment_fee object
