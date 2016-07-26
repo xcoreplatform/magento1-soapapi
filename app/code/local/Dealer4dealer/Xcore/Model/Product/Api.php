@@ -6,7 +6,7 @@ class Dealer4dealer_Xcore_Model_Product_Api extends Mage_Api_Model_Resource_Abst
         $result = array();
         $products = Mage::getModel("catalog/product")
             ->getCollection()
-            ->addAttributeToSelect('*')
+            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
             ->setOrder('entity_id', 'DESC')
             ->setPageSize(5);
 
