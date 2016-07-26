@@ -35,9 +35,6 @@ class Dealer4dealer_Xcore_Block_Adminhtml_System_Config_Field_Renderer_Salesflat
 
         $dbname = (string)Mage::getConfig()->getNode('global/resources/default_setup/connection/dbname');
 
-        /**
-         * Execute the query and store the results in $results
-         */
         $results = $readConnection->fetchAll("
 SELECT
   `column_name`
