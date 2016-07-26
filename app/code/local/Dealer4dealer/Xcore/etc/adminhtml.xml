@@ -11,9 +11,9 @@
                         <children>
                             <config>
                                 <children>
-                                    <d4d_xcore>
+                                    <xcore_payment>
                                         <title>Dealer4Dealer - xCore</title>
-                                    </d4d_xcore>
+                                    </xcore_payment>
                                 </children>
                             </config>
                         </children>
