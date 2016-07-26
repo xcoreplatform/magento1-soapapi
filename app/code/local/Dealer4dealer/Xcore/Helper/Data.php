@@ -3,6 +3,8 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const PAYMENT_FIELD = 'xcore_payment_fees';
 
+    const XPATH_PAYMENT_FEE_MAPPING = 'xcore_payment/fee/mapping';
+
     /**
      * Init a payment fee model.
      *
@@ -37,10 +39,28 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
         $order->setData(self::PAYMENT_FIELD, $currentFees);
     }
 
+    /**
+     * @return string
+     */
     public function getVersion()
     {
         return (string) Mage::getConfig()->getNode()->modules->dealer4dealer_xcore->version;
 
+    }
+
+    /**
+     * @param null|int $storeId
+     * @return array
+     */
+    public function getPaymentFeesData($storeId = null)
+    {
+        $fees = Mage::getStoreConfig(self::XPATH_PAYMENT_FEE_MAPPING, $storeId);
+        if ($fees) {
+            $fees = unserialize($fees);
+            return array_values((array)$fees); // cast to array and strip any keys
+        }
+
+        return [];
     }
 
 }

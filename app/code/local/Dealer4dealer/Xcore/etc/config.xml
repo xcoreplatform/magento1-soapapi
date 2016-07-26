@@ -31,5 +31,16 @@
                 <class>Dealer4dealer_Xcore_Block</class>
             </dealer4dealer_xcore>
         </blocks>
+        <events>
+            <dealer4dealer_xcore_sales_order_payment_fee>
+                <observers>
+                    <dealer4dealer_xcore_sales_order_payment_fee>
+                        <class>Dealer4dealer_Xcore_Model_Observers_Paymentfee</class>
+                        <method>dealer4dealerXcoreSalesOrderPaymentFee</method>
+                        <type>singleton</type>
+                    </dealer4dealer_xcore_sales_order_payment_fee>
+                </observers>
+            </dealer4dealer_xcore_sales_order_payment_fee>
+        </events>
     </global>
 </config>
