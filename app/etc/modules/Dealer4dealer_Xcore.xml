@@ -4,6 +4,11 @@
         <dealer4dealer_xcore>
             <active>true</active>
             <codePool>local</codePool>
+            <depends>
+                <Mage_Sales/>
+                <Mage_Catalog/>
+                <Mage_Customer/>
+            </depends>
         </dealer4dealer_xcore>
     </modules>
 </config>
