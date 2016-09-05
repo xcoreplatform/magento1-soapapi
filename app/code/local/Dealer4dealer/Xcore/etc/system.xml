@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dealer4dealer_Xcore extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category       Dealer4dealer
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */-->
+<config>
+    <tabs>
+        <d4d_xcore translate="label" module="dealer4dealer_xcore">
+            <label>Dealer4Dealer xCore</label>
+            <sort_order>500</sort_order>
+        </d4d_xcore>
+    </tabs>
+    <sections>
+        <xcore_payment>
+            <tab>d4d_xcore</tab>
+            <label>Payment</label>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <sort_order>20</sort_order>
+            <groups>
+                <fee translate="label" module="dealer4dealer_xcore">
+                    <label>Payment Method Fee</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <mapping translate="label comment" module="dealer4dealer_xcore">
+                            <label>Fee</label>
+                            <comment><![CDATA[Fields are the column names in the &acute;sales_flat_order&acute; table]]></comment>
+                            <frontend_model>dealer4dealer_xcore/adminhtml_system_config_field_fee</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mapping>
+                    </fields>
+                </fee>
+            </groups>
+        </xcore_payment>
+    </sections>
+</config>
