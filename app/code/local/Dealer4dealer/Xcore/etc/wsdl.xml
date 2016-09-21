@@ -38,6 +38,13 @@
                     <element name="vat_id" type="xsd:string" minOccurs="0" />
                 </all>
             </complexType>
+            <complexType name="salesOrderAddressEntity">
+                <all>
+                    <element name="prefix" type="xsd:string" minOccurs="0" />
+                    <element name="suffix" type="xsd:string" minOccurs="0" />
+                    <element name="vat_id" type="xsd:string" minOccurs="0" />
+                </all>
+            </complexType>
             <!-- Custom calls -->
             <complexType name="xcoreSalesOrderPaymentFeeArray">
                 <complexContent>
