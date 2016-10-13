@@ -66,7 +66,5 @@ class Dealer4dealer_Xcore_Model_Observers_Paymentfee
         }
 
         $order->setData('xcore_payment_fees', $paymentFeeObjects);
-
-        var_dump($order->getData('xcore_payment_fees'));
     }
 }
