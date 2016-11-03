@@ -17,41 +17,15 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
 
         /** @var Dealer4dealer_Xcore_Model_Payment_Fee $paymentFee */
         foreach ($this->_getPaymentFees($order) as $paymentFee) {
-            $result['xcore_payment_fees'][] = $this->_preparePaymentFeeResult($paymentFee);
+            $result['xcore_payment_fees'][] = $paymentFee->toArray();
         }
-        
+
         /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttribute */
         foreach ($this->_getCustomAttributes($order) as $customAttribute) {
-            $result['xcore_custom_attributes'][] = $this->_prepareCustomAttributeResult($customAttribute);
+            $result['xcore_custom_attributes'][] = $customAttribute->toArray();
         }
 
         return $result;
-    }
-
-    /**
-     * @param Dealer4dealer_Xcore_Model_Payment_Fee $paymentFee
-     * @return array
-     */
-    protected function _preparePaymentFeeResult($paymentFee)
-    {
-        return array(
-            'base_amount'   => $paymentFee->getBaseAmount(),
-            'amount'        => $paymentFee->getAmount(),
-            'tax_rate'      => $paymentFee->getTaxRate(),
-            'title'         => $paymentFee->getTitle(),
-        );
-    }
-
-    /**
-     * @param Dealer4dealer_Xcore_Model_Custom_Attribute $customAttribute
-     * @return array
-     */
-    protected function _prepareCustomAttributeResult($customAttribute)
-    {
-        return array(
-            'key'   => $customAttribute->getKey(),
-            'value' => $customAttribute->getValue(),
-        );
     }
 
     /**

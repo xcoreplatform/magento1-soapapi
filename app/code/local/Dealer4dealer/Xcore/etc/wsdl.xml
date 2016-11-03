@@ -34,6 +34,11 @@
                     <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
                 </all>
             </complexType>
+            <complexType name="customerCustomerEntity">
+                <all>
+                    <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
+                </all>
+            </complexType>
             <complexType name="customerAddressEntityItem">
                 <all>
                     <element name="vat_id" type="xsd:string" minOccurs="0" />

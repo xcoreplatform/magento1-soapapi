@@ -20,6 +20,11 @@
                     <order_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Api_V2</order_api_v2>
                 </rewrite>
             </sales>
+            <customer>
+                <rewrite>
+                    <customer_api_v2>Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2</customer_api_v2>
+                </rewrite>
+            </customer>
         </models>
         <helpers>
             <dealer4dealer_xcore>
