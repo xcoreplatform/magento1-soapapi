@@ -30,7 +30,8 @@
             </complexType>
             <complexType name="salesOrderEntity">
                 <all>
-                    <element name="payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" minOccurs="0" />
+                    <element name="xcore_payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" minOccurs="0" />
+                    <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
                 </all>
             </complexType>
             <complexType name="customerAddressEntityItem">
@@ -133,6 +134,19 @@
                 <all>
                     <element name="code" type="xsd:string" minOccurs="1" />
                     <element name="label" type="xsd:string" minOccurs="1" />
+                </all>
+            </complexType>
+            <complexType name="xcoreCustomAttributeArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreCustomAttribute[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreCustomAttribute">
+                <all>
+                    <element name="key" type="xsd:string" minOccurs="1" />
+                    <element name="value" type="xsd:string" minOccurs="1" />
                 </all>
             </complexType>
         </schema>

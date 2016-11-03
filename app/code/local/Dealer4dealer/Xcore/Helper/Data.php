@@ -1,8 +1,8 @@
 <?php
 class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    const PAYMENT_FIELD = 'xcore_payment_fees';
-
+    const PAYMENT_FIELD             = 'xcore_payment_fees';
+    const CUSTOM_ATTRIBUTE_FIELD    = 'xcore_custom_attributes';
     const XPATH_PAYMENT_FEE_MAPPING = 'xcore_payment/fee/mapping';
 
     /**
