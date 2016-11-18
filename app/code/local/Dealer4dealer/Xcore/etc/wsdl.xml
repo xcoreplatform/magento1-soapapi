@@ -34,6 +34,12 @@
                     <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
                 </all>
             </complexType>
+            <complexType name="salesOrderCreditmemoEntity">
+                <all>
+                    <element name="xcore_payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" minOccurs="0" />
+                    <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
+                </all>
+            </complexType>
             <complexType name="customerCustomerEntity">
                 <all>
                     <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
