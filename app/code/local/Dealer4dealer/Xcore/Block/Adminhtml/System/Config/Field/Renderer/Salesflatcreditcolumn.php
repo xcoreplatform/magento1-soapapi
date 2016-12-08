@@ -20,7 +20,7 @@
  * @category    Dealer4dealer
  * @author      Sander Mangel <sander@sandermangel.nl>
  */
-class Dealer4dealer_Xcore_Block_Adminhtml_System_Config_Field_Renderer_Salesflatordercolumn
+class Dealer4dealer_Xcore_Block_Adminhtml_System_Config_Field_Renderer_Salesflatcreditcolumn
     extends Mage_Core_Block_Html_Select
 {
     /**
@@ -43,7 +43,7 @@ FROM
   `information_schema`.`columns`
 WHERE
   `table_schema` = '{$dbname}'
-   AND `table_name` = '{$resource->getTableName('sales/order')}'
+   AND `table_name` = '{$resource->getTableName('sales/creditmemo')}'
 ORDER BY
   `table_name`, `ordinal_position`
         ");
