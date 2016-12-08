@@ -4,6 +4,8 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
     const PAYMENT_FIELD             = 'xcore_payment_fees';
     const CUSTOM_ATTRIBUTE_FIELD    = 'xcore_custom_attributes';
     const XPATH_PAYMENT_FEE_MAPPING = 'xcore_payment/fee/mapping';
+    const XPATH_ORDER_COLUMNS_MAPPING = 'xcore_sales/order/mapping';
+    const XPATH_CREDIT_COLUMNS_MAPPING = 'xcore_sales/credit/mapping';
 
     /**
      * Init a payment fee model.
@@ -54,10 +56,20 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getPaymentFeesData($storeId = null)
     {
-        $fees = Mage::getStoreConfig(self::XPATH_PAYMENT_FEE_MAPPING, $storeId);
-        if ($fees) {
-            $fees = unserialize($fees);
-            return array_values((array)$fees); // cast to array and strip any keys
+        return $this->getMappingData(self::XPATH_PAYMENT_FEE_MAPPING, $storeId);
+    }
+
+    /**
+     * @param string $sysconKey
+     * @param null|int $storeId
+     * @return array
+     */
+    public function getMappingData($sysconKey, $storeId = null)
+    {
+        $mapping = Mage::getStoreConfig($sysconKey, $storeId);
+        if ($mapping) {
+            $mapping = unserialize($mapping);
+            return array_values((array)$mapping); // cast to array and strip any keys
         }
 
         return [];
