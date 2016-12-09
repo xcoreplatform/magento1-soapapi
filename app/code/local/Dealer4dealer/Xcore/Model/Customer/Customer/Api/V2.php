@@ -28,13 +28,20 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
      */
     protected function _getCustomAttributes($customer)
     {
-        $customAttributes = $customer->getData(Dealer4dealer_Xcore_Helper_Data::CUSTOM_ATTRIBUTE_FIELD);
+        $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_CUSTOMER_COLUMNS_MAPPING, $customer->getStoreId());
 
-        if (is_array($customAttributes)) {
-            return $customAttributes;
+        /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
+        $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
+        $response = [];
+
+        foreach ($mapping as $column) {
+            $response[] = $customAttributes->setData([
+                'key'       => $column['exact_key'],
+                'value'     => $order->getData($column['column'])
+            ]);
         }
 
-        return array();
+        return $response;
     }
 
     /**
