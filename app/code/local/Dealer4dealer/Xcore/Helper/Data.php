@@ -6,6 +6,7 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
     const XPATH_PAYMENT_FEE_MAPPING = 'xcore_payment/fee/mapping';
     const XPATH_ORDER_COLUMNS_MAPPING = 'xcore_sales/order/mapping';
     const XPATH_CREDIT_COLUMNS_MAPPING = 'xcore_sales/credit/mapping';
+    const XPATH_CUSTOMER_COLUMNS_MAPPING = 'xcore_customers/customer/mapping';
 
     /**
      * Init a payment fee model.

@@ -68,7 +68,7 @@
                     <fields>
                         <mapping translate="label comment" module="dealer4dealer_xcore">
                             <label>Custom fields</label>
-                            <comment><![CDATA[Fields are the column names in the &acute;sales_flat_order&acute; table]]></comment>
+                            <comment><![CDATA[Fields correspond to data keys in the order object]]></comment>
                             <frontend_model>dealer4dealer_xcore/adminhtml_system_config_field_ordermapping</frontend_model>
                             <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
                             <sort_order>10</sort_order>
@@ -87,7 +87,7 @@
                     <fields>
                         <mapping translate="label comment" module="dealer4dealer_xcore">
                             <label>Custom fields</label>
-                            <comment><![CDATA[Fields are the column names in the &acute;sales_flat_order&acute; table]]></comment>
+                            <comment><![CDATA[Fields correspond to data keys in the creditmemo object]]></comment>
                             <frontend_model>dealer4dealer_xcore/adminhtml_system_config_field_creditmapping</frontend_model>
                             <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
                             <sort_order>10</sort_order>
@@ -99,5 +99,34 @@
                 </credit>
             </groups>
         </xcore_sales>
+        <xcore_customers>
+            <tab>d4d_xcore</tab>
+            <label>Customer configuration</label>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <sort_order>40</sort_order>
+            <groups>
+                <customer translate="label" module="dealer4dealer_xcore">
+                    <label>Customers</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <mapping translate="label comment" module="dealer4dealer_xcore">
+                            <label>Custom fields</label>
+                            <comment><![CDATA[Fields correspond to data keys in the customer object]]></comment>
+                            <frontend_model>dealer4dealer_xcore/adminhtml_system_config_field_customermapping</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mapping>
+                    </fields>
+                </customer>
+            </groups>
+        </xcore_customers>
     </sections>
 </config>
