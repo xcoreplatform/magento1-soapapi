@@ -37,7 +37,7 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
         foreach ($mapping as $column) {
             $response[] = $customAttributes->setData([
                 'key'       => $column['exact_key'],
-                'value'     => $order->getData($column['column'])
+                'value'     => $customer->getData($column['column'])
             ]);
         }
 
