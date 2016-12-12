@@ -34,7 +34,7 @@ class Dealer4dealer_Xcore_Block_Adminhtml_System_Config_Field_Creditmapping
             //'renderer' => $this->_getRenderer('salesflatcreditcolumn'),
         ]);
         $this->addColumn('exact_key', [
-            'label' => Mage::helper('dealer4dealer_xcore')->__('Exact name'),
+            'label' => Mage::helper('dealer4dealer_xcore')->__('xCore key'),
             'style' => 'width:150px',
         ]);
 
