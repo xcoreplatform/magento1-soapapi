@@ -57,10 +57,15 @@ class Dealer4dealer_Xcore_Model_Observers_Paymentfee
         foreach ($fees as $feeData) {
             $percent = $taxCalculation->getRate($request->setProductClassId($feeData['tax_rate']));
 
+            $feeAmount = (float)$order->getData($feeData['amount']);
+            if ($feeAmount == 0) { // only add fee lines when amount is more than 0
+                continue;
+            }
+
             $paymentFeeObjects[] = Mage::getModel('dealer4dealer_xcore/payment_fee')->setData([
                 'title'         => $feeData['title'],
                 'base_amount'   => (float)$order->getData($feeData['base_amount']),
-                'amount'        => (float)$order->getData($feeData['amount']),
+                'amount'        => $feeAmount,
                 'tax_rate'      => (float)$percent,
             ]);
         }
