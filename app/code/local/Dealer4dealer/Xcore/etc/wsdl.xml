@@ -26,6 +26,7 @@
             <complexType name="catalogProductReturnEntity">
                 <all>
                     <element name="tax_rate" type="xsd:float" minOccurs="0"/>
+                    <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
                 </all>
             </complexType>
             <complexType name="salesOrderEntity">

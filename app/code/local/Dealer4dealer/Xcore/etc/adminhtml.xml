@@ -35,6 +35,9 @@
                                     <xcore_customers>
                                         <title>Dealer4Dealer - Customer settings</title>
                                     </xcore_customers>
+                                    <xcore_products>
+                                        <title>Dealer4Dealer - Product settings</title>
+                                    </xcore_products>
                                 </children>
                             </config>
                         </children>
