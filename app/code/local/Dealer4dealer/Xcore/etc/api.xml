@@ -127,6 +127,32 @@
                     </info>
                 </methods>
             </xcore_version>
+            <xcore_custom>
+                <model>dealer4dealer_xcore/custom_api</model>
+                <title>xCore Custom Attributes</title>
+                <methods>
+                    <itemAttributes translate="title" module="dealer4dealer_xcore">
+                        <method>itemAttributes</method>
+                        <title>Custom Item Attributes</title>
+                        <acl>catalog/product/info</acl>
+                    </itemAttributes>
+                    <customerAttributes translate="title" module="dealer4dealer_xcore">
+                        <method>customerAttributes</method>
+                        <title>Custom Customer Attributes</title>
+                        <acl>customer/info</acl>
+                    </customerAttributes>
+                    <saleAttributes translate="title" module="dealer4dealer_xcore">
+                        <method>saleAttributes</method>
+                        <title>Custom Sale Attributes</title>
+                        <acl>sales/order</acl>
+                    </saleAttributes>
+                    <creditAttributes translate="title" module="dealer4dealer_xcore">
+                        <method>creditAttributes</method>
+                        <title>Custom Credit Attributes</title>
+                        <acl>sales/order</acl>
+                    </creditAttributes>
+                </methods>
+            </xcore_custom>
         </resources>
         <v2>
             <resources_function_prefix>
@@ -139,6 +165,7 @@
                 <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet</xcore_catalog_product_attribute_set>
                 <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
                 <xcore_version>xcoreVersion</xcore_version>
+                <xcore_custom>xcoreCustom</xcore_custom>
             </resources_function_prefix>
         </v2>
     </api>

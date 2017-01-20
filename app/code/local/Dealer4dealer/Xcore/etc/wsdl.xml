@@ -227,6 +227,30 @@
     <message name="xcoreVersionInfoResponse">
         <part name="version" type="xsd:string" />
     </message>
+    <message name="xcoreCustomItemAttributesRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreCustomItemAttributesResponse">
+        <part name="result" type="typens:xcoreCustomAttributeArray" />
+    </message>
+    <message name="xcoreCustomCustomerAttributesRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreCustomCustomerAttributesResponse">
+        <part name="result" type="typens:xcoreCustomAttributeArray" />
+    </message>
+    <message name="xcoreCustomSaleAttributesRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreCustomSaleAttributesResponse">
+        <part name="result" type="typens:xcoreCustomAttributeArray" />
+    </message>
+    <message name="xcoreCustomCreditAttributesRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreCustomCreditAttributesResponse">
+        <part name="result" type="typens:xcoreCustomAttributeArray" />
+    </message>
     <portType name="{{var wsdl.handler}}PortType">
         <operation name="xcoreCatalogProductAttributeTierPriceCreate">
             <documentation>Create tier prices</documentation>
@@ -272,6 +296,26 @@
             <documentation>Group Info</documentation>
             <input message="typens:xcoreVersionInfoRequest"/>
             <output message="typens:xcoreVersionInfoResponse"/>
+        </operation>
+        <operation name="xcoreCustomItemAttributes">
+            <documentation>List of custom xcore Item Attributes</documentation>
+            <input message="typens:xcoreCustomItemAttributesRequest"/>
+            <output message="typens:xcoreCustomItemAttributesResponse"/>
+        </operation>
+        <operation name="xcoreCustomCustomerAttributes">
+            <documentation>List of custom xcore Customer Attributes</documentation>
+            <input message="typens:xcoreCustomCustomerAttributesRequest"/>
+            <output message="typens:xcoreCustomCustomerAttributesResponse"/>
+        </operation>
+        <operation name="xcoreCustomSaleAttributes">
+            <documentation>List of custom xcore Sale Attributes</documentation>
+            <input message="typens:xcoreCustomSaleAttributesRequest"/>
+            <output message="typens:xcoreCustomSaleAttributesResponse"/>
+        </operation>
+        <operation name="xcoreCustomCreditAttributes">
+            <documentation>List of custom xcore Credit Attributes</documentation>
+            <input message="typens:xcoreCustomCreditAttributesRequest"/>
+            <output message="typens:xcoreCustomCreditAttributesResponse"/>
         </operation>
     </portType>
     <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
@@ -349,6 +393,42 @@
             </output>
         </operation>
         <operation name="xcoreVersionInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomItemAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomCustomerAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomSaleAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomCreditAttributes">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
             <input>
                 <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
