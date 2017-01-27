@@ -20,10 +20,8 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
             $result['tax_rate'] = $taxRate;
         }
 
-        $product = Mage::getModel('catalog/product')->load($productId);
-
         /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttribute */
-        foreach ($this->_getCustomAttributes($product) as $customAttribute) {
+        foreach ($this->_getCustomAttributes($result) as $customAttribute) {
             $result['xcore_custom_attributes'][] = $customAttribute->toArray();
         }
 
@@ -79,13 +77,12 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
         $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_PRODUCT_COLUMNS_MAPPING);
 
         /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
-        $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
         $response = [];
-
         foreach ($mapping as $column) {
+            $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
             $response[] = $customAttributes->setData([
                 'key'       => $column['exact_key'],
-                'value'     => $product->getData($column['column'])
+                'value'     => $product[$column['column']]
             ]);
         }
 
