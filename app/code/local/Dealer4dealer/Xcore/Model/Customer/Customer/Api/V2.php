@@ -30,14 +30,23 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
     {
         $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_CUSTOMER_COLUMNS_MAPPING, $customer->getStoreId());
 
-        /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
         $response = [];
-
         foreach ($mapping as $column) {
+            $value = $customer->getData($column['column']);
+
+            // Get the frontend value instead of option value
+            if($value) {
+                $attribute = $customer->getResource()->getAttribute($column['column']);
+                if ($attribute) {
+                    $value = $attribute->getFrontend()->getValue($customer);
+                }
+            }
+
+            /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
             $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
             $response[] = $customAttributes->setData([
                 'key'       => $column['exact_key'],
-                'value'     => $customer->getData($column['column'])
+                'value'     => $value
             ]);
         }
 

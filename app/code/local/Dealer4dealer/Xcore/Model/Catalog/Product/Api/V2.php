@@ -75,14 +75,25 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
     protected function _getCustomAttributes($product)
     {
         $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_PRODUCT_COLUMNS_MAPPING);
+        $product = Mage::getModel('catalog/product')->load($product['product_id']);
 
-        /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
         $response = [];
         foreach ($mapping as $column) {
+            $value = $product->getData($column['column']);
+
+            // Get the frontend value instead of option value
+            if($value) {
+                $attribute = $product->getResource()->getAttribute($column['column']);
+                if ($attribute) {
+                    $value = $attribute->getFrontend()->getValue($product);
+                }
+            }
+
+            /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
             $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
             $response[] = $customAttributes->setData([
                 'key'       => $column['exact_key'],
-                'value'     => $product[$column['column']]
+                'value'     => $value
             ]);
         }
 

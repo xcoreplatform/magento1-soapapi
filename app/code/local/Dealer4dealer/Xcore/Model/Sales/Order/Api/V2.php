@@ -53,11 +53,13 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
 
         $response = [];
         foreach ($mapping as $column) {
+            $value = $order->getData($column['column']);
+
             /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
             $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
             $response[] = $customAttributes->setData([
                 'key'       => $column['exact_key'],
-                'value'     => $order->getData($column['column'])
+                'value'     => $value
             ]);
         }
 
