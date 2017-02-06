@@ -153,6 +153,17 @@
                     </creditAttributes>
                 </methods>
             </xcore_custom>
+            <xcore_website>
+                <model>dealer4dealer_xcore/website_api</model>
+                <title>Websites</title>
+                <methods>
+                    <items translate="title" module="dealer4dealer_xcore">
+                        <method>items</method>
+                        <title>List of websites</title>
+                        <acl>core/store/info</acl>
+                    </items>
+                </methods>
+            </xcore_website>
         </resources>
         <v2>
             <resources_function_prefix>
@@ -161,11 +172,12 @@
                 <xcore_catalog_product_attribute>xcoreCatalogProductAttribute</xcore_catalog_product_attribute>
                 <xcore_customer>xcoreCustomer</xcore_customer>
                 <xcore_index>xcoreIndex</xcore_index>
-                <xcore_czonfig>xcoreConfig</xcore_czonfig>
+                <xcore_config>xcoreConfig</xcore_config>
                 <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet</xcore_catalog_product_attribute_set>
                 <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
                 <xcore_version>xcoreVersion</xcore_version>
                 <xcore_custom>xcoreCustom</xcore_custom>
+                <xcore_website>xcoreWebsite</xcore_website>
             </resources_function_prefix>
         </v2>
     </api>

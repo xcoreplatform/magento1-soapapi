@@ -161,6 +161,25 @@
                     <element name="value" type="xsd:string" minOccurs="1" />
                 </all>
             </complexType>
+            <complexType name="xcoreWebsiteItemsArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreWebsiteItem[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreWebsiteItem">
+                <all>
+                    <element name="website_id" type="xsd:string" minOccurs="1" />
+                    <element name="code" type="xsd:string" minOccurs="1" />
+                    <element name="name" type="xsd:string" minOccurs="1" />
+                    <element name="sort_order" type="xsd:string" minOccurs="1" />
+                    <element name="default_group_id" type="xsd:string" minOccurs="1" />
+                    <element name="is_default" type="xsd:string" minOccurs="1" />
+                    <element name="is_staging" type="xsd:string" minOccurs="1" />
+                    <element name="visibility" type="xsd:string" minOccurs="1" />
+                </all>
+            </complexType>
         </schema>
     </types>
     <message name="xcoreCatalogProductAttributeTierPriceCreateRequest">
@@ -251,6 +270,12 @@
     <message name="xcoreCustomCreditAttributesResponse">
         <part name="result" type="typens:xcoreCustomAttributeArray" />
     </message>
+    <message name="xcoreWebsiteItemsRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreWebsiteItemsResponse">
+        <part name="result" type="typens:xcoreWebsiteItemsArray" />
+    </message>
     <portType name="{{var wsdl.handler}}PortType">
         <operation name="xcoreCatalogProductAttributeTierPriceCreate">
             <documentation>Create tier prices</documentation>
@@ -316,6 +341,11 @@
             <documentation>List of custom xcore Credit Attributes</documentation>
             <input message="typens:xcoreCustomCreditAttributesRequest"/>
             <output message="typens:xcoreCustomCreditAttributesResponse"/>
+        </operation>
+        <operation name="xcoreWebsiteItems">
+            <documentation>List of websites</documentation>
+            <input message="typens:xcoreWebsiteItemsRequest"/>
+            <output message="typens:xcoreWebsiteItemsResponse"/>
         </operation>
     </portType>
     <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
@@ -429,6 +459,15 @@
             </output>
         </operation>
         <operation name="xcoreCustomCreditAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreWebsiteItems">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
             <input>
                 <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
