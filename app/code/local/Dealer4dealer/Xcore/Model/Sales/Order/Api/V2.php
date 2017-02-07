@@ -15,6 +15,10 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
 
         $this->dispatchEvents($order);
 
+        // Add missing shipping discount
+        $result['xcore_base_shipping_discount_amount'] = $order->getBaseShippingDiscountAmount();
+        $result['xcore_shipping_discount_amount'] = $order->getShippingDiscountAmount();
+
         /** @var Dealer4dealer_Xcore_Model_Payment_Fee $paymentFee */
         foreach ($this->_getPaymentFees($order) as $paymentFee) {
             $result['xcore_payment_fees'][] = $paymentFee->toArray();
