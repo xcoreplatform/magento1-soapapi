@@ -164,6 +164,22 @@
                     </items>
                 </methods>
             </xcore_website>
+            <xcore_sales_order>
+                <model>dealer4dealer_xcore/sales_order_api</model>
+                <title>Sales Order</title>
+                <methods>
+                    <states translate="title" module="dealer4dealer_xcore">
+                        <method>states</method>
+                        <title>List of sales order states</title>
+                        <acl>core/store/info</acl>
+                    </states>
+                    <statuses translate="title" module="dealer4dealer_xcore">
+                        <method>statuses</method>
+                        <title>List of sales order statuses</title>
+                        <acl>core/store/info</acl>
+                    </statuses>
+                </methods>
+            </xcore_sales_order>
         </resources>
         <v2>
             <resources_function_prefix>
