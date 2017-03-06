@@ -51,6 +51,7 @@ class Dealer4dealer_Xcore_Model_Observers_Paymentfee
         /* @var $store Mage_Core_Model_Store */
         $store  = $salesObject->getStore();
         $fees   = Mage::helper('dealer4dealer_xcore')->getPaymentFeesData($store->getId());
+        $posneg = ($salesObject instanceof Mage_Sales_Model_Order_Creditmemo) ? -1 : 1;
 
         /* @var $taxCalculation Mage_Tax_Model_Calculation */
         $taxCalculation = Mage::getModel('tax/calculation');
@@ -73,8 +74,8 @@ class Dealer4dealer_Xcore_Model_Observers_Paymentfee
 
             $paymentFeeObjects[] = Mage::getModel('dealer4dealer_xcore/payment_fee')->setData([
                 'title'         => $feeData['title'],
-                'base_amount'   => (float)$salesObject->getData($feeData['base_amount']),
-                'amount'        => $feeAmount,
+                'base_amount'   => (float)$salesObject->getData($feeData['base_amount']) * $posneg,
+                'amount'        => $feeAmount * $posneg,
                 'tax_rate'      => (float)$percent,
             ]);
         }
