@@ -21,6 +21,11 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
         $result['xcore_base_shipping_discount_amount'] = $baseShippingDiscountAmount;
         $result['xcore_shipping_discount_amount'] = $shippingDiscountAmount;
 
+        foreach($result['items'] as $item) {
+            $product = Mage::getModel('catalog/product')->load($item['product_id']);
+            $item['xcore_base_sku'] = $product->getSku();
+        }
+
         /** @var Dealer4dealer_Xcore_Model_Payment_Fee $paymentFee */
         foreach ($this->_getPaymentFees($order) as $paymentFee) {
             $result['xcore_payment_fees'][] = $paymentFee->toArray();

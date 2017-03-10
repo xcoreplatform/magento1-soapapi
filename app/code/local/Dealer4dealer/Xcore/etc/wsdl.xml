@@ -179,9 +179,6 @@
                     <element name="name" type="xsd:string" minOccurs="1" />
                     <element name="sort_order" type="xsd:string" minOccurs="1" />
                     <element name="default_group_id" type="xsd:string" minOccurs="1" />
-                    <element name="is_default" type="xsd:string" minOccurs="1" />
-                    <element name="is_staging" type="xsd:string" minOccurs="1" />
-                    <element name="visibility" type="xsd:string" minOccurs="1" />
                 </all>
             </complexType>
         </schema>
@@ -219,7 +216,7 @@
     <message name="xcoreIndexReindexAllResponse">
         <part name="taxclasses" type="typens:boolean"/>
     </message>
-     <message name="xcoreIndexReindexRequest">
+    <message name="xcoreIndexReindexRequest">
         <part name="sessionId" type="xsd:string"/>
         <part name="start" type="xsd:string"/>
     </message>

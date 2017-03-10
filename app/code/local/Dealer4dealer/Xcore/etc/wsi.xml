@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="{{var wsdl.name}}"
+                  targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+
+            <!-- Extra fields for existing calls -->
+            <xsd:element name="catalogProductInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:catalogProductReturnEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="catalogProductReturnEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="tax_rate" type="xsd:float" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="salesOrderInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:salesOrderEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="salesOrderEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_base_shipping_discount_amount" type="xsd:string" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_shipping_discount_amount" type="xsd:string" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="salesOrderCreditmemoInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:salesOrderCreditmemoEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="salesOrderCreditmemoEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_base_shipping_discount_amount" type="xsd:string" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_shipping_discount_amount" type="xsd:string" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_payment_fees" type="typens:xcoreSalesOrderPaymentFeeArray" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="customerCustomerInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="result" type="typens:customerCustomerEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="customerCustomerEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="customerAddressInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:customerAddressEntityItem" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="customerAddressEntityItem">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="vat_id" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="salesOrderAddressEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="prefix" type="xsd:string" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="suffix" type="xsd:string" />
+                    <xsd:element minOccurs="0" maxOccurs="1" name="vat_id" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- Custom calls -->
+            <xsd:complexType name="xcoreSalesOrderPaymentFeeArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:xcoreSalesOrderPaymentFee" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcoreSalesOrderPaymentFee">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="base_amount" type="xsd:double" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="amount" type="xsd:double" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="tax_rate" type="xsd:double" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="title" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="xcoreTaxClassProductListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreTaxClassProductListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreTaxClassProductListResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="xcoreTaxClassProductListResult">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:xcoreTaxClassProductListEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcoreTaxClassProductListEntity">
+                <xsd:sequence>
+                    <xsd:element name="tax_class_id" type="xsd:int" minOccurs="1" />
+                    <xsd:element name="label" type="xsd:string" minOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="xcorePaymentMethodListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcorePaymentMethodListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcorePaymentMethodListResult" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="xcorePaymentMethodListResult">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:xcorePaymentMethodEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcorePaymentMethodEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="code" type="xsd:string" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="label" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="xcoreCatalogProductAttributeSetGroupInfoRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="attributeSetId" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="attributeSetGroupName" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCatalogProductAttributeSetGroupInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="complexObject" type="typens:xcorePaymentMethodEntity" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="xcoreCatalogProductAttributeSetGroupInfoEntity">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="attribute_group_id" type="xsd:int" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="attribute_set_id" type="xsd:int" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="attribute_group_name" type="xsd:string" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="sort_order" type="xsd:int" />
+                    <xsd:element minOccurs="1" maxOccurs="1" name="default_id" type="xsd:int" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="xcoreVersionInfoRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreVersionInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomItemAttributesRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomItemAttributesResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreCustomAttributeArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomCustomerAttributesRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomCustomerAttributesResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreCustomAttributeArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomSaleAttributesRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomSaleAttributesResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreCustomAttributeArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomCreditAttributesRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomCreditAttributesResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreCustomAttributeArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="xcoreCustomAttributeArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:xcoreCustomAttribute" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcoreCustomAttribute">
+                <xsd:sequence>
+                    <xsd:element name="key" type="xsd:string" minOccurs="1" />
+                    <xsd:element name="value" type="xsd:string" minOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="xcoreWebsiteItemsRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreWebsiteItemsResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreWebsiteItemsArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="xcoreWebsiteItemsArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:xcoreWebsiteItem" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcoreWebsiteItem">
+                <xsd:sequence>
+                    <xsd:element name="website_id" type="xsd:string" minOccurs="1" />
+                    <xsd:element name="code" type="xsd:string" minOccurs="1" />
+                    <xsd:element name="name" type="xsd:string" minOccurs="1" />
+                    <xsd:element name="default_group_id" type="xsd:string" minOccurs="1" />
+                    <xsd:element name="is_default" type="xsd:string" minOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="xcoreTaxClassProductListRequest">
+        <wsdl:part name="parameters" element="typens:xcoreTaxClassProductListRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreTaxClassProductListResponse">
+        <wsdl:part name="parameters" element="typens:xcoreTaxClassProductListResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCatalogProductAttributeSetGroupInfoRequest">
+        <wsdl:part name="parameters" element="typens:xcoreCatalogProductAttributeSetGroupInfoRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCatalogProductAttributeSetGroupInfoResponse">
+        <wsdl:part name="parameters" element="typens:xcoreCatalogProductAttributeSetGroupInfoResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcorePaymentMethodListRequest">
+        <wsdl:part name="parameters" element="typens:xcorePaymentMethodListRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcorePaymentMethodListResponse">
+        <wsdl:part name="parameters" element="typens:xcorePaymentMethodListResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreVersionInfoRequest">
+        <wsdl:part name="parameters" element="typens:xcoreVersionInfoRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreVersionInfoResponse">
+        <wsdl:part name="parameters" element="typens:xcoreVersionInfoResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomItemAttributesRequest">
+        <wsdl:part name="parameters" element="typens:xcoreCustomItemAttributesRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomItemAttributesResponse">
+        <wsdl:part name="parameters" element="typens:xcoreCustomItemAttributesResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomCustomerAttributesRequest">
+        <wsdl:part name="parameters" element="typens:xcoreCustomCustomerAttributesRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomCustomerAttributesResponse">
+        <wsdl:part name="parameters" element="typens:xcoreCustomCustomerAttributesResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomSaleAttributesRequest">
+        <wsdl:part name="parameters" element="typens:xcoreCustomSaleAttributesRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomSaleAttributesResponse">
+        <wsdl:part name="parameters" element="typens:xcoreCustomSaleAttributesResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomCreditAttributesRequest">
+        <wsdl:part name="parameters" element="typens:xcoreCustomCreditAttributesRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomCreditAttributesResponse">
+        <wsdl:part name="parameters" element="typens:xcoreCustomCreditAttributesResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreWebsiteItemsRequest">
+        <wsdl:part name="parameters" element="typens:xcoreWebsiteItemsRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="xcoreWebsiteItemsResponse">
+        <wsdl:part name="parameters" element="typens:xcoreWebsiteItemsResponseParam" />
+    </wsdl:message>
+
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="xcoreTaxClassProductList">
+            <wsdl:documentation>Create tier prices</wsdl:documentation>
+            <wsdl:input message="typens:xcoreTaxClassProductListRequest"/>
+            <wsdl:output message="typens:xcoreTaxClassProductListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCatalogProductAttributeSetGroupInfo">
+            <wsdl:documentation>Group Info</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCatalogProductAttributeSetGroupInfoRequest"/>
+            <wsdl:output message="typens:xcoreCatalogProductAttributeSetGroupInfoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcorePaymentMethodList">
+            <wsdl:documentation>Group Info</wsdl:documentation>
+            <wsdl:input message="typens:xcorePaymentMethodListRequest"/>
+            <wsdl:output message="typens:xcorePaymentMethodListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreVersionInfo">
+            <wsdl:documentation>Group Info</wsdl:documentation>
+            <wsdl:input message="typens:xcoreVersionInfoRequest"/>
+            <wsdl:output message="typens:xcoreVersionInfoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomItemAttributes">
+            <wsdl:documentation>List of custom xcore Item Attributes</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCustomItemAttributesRequest"/>
+            <wsdl:output message="typens:xcoreCustomItemAttributesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomCustomerAttributes">
+            <wsdl:documentation>List of custom xcore Customer Attributes</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCustomCustomerAttributesRequest"/>
+            <wsdl:output message="typens:xcoreCustomCustomerAttributesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomSaleAttributes">
+            <wsdl:documentation>List of custom xcore Sale Attributes</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCustomSaleAttributesRequest"/>
+            <wsdl:output message="typens:xcoreCustomSaleAttributesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomCreditAttributes">
+            <wsdl:documentation>List of custom xcore Credit Attributes</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCustomCreditAttributesRequest"/>
+            <wsdl:output message="typens:xcoreCustomCreditAttributesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreWebsiteItems">
+            <wsdl:documentation>List of websites</wsdl:documentation>
+            <wsdl:input message="typens:xcoreWebsiteItemsRequest"/>
+            <wsdl:output message="typens:xcoreWebsiteItemsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="xcoreTaxClassProductList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCatalogProductAttributeSetGroupInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcorePaymentMethodList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreVersionInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomItemAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomCustomerAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomSaleAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomCreditAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreWebsiteItems">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <wsdl:input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="{{var wsdl.name}}Service">
+        <wsdl:port name="{{var wsdl.handler}}Port" binding="typens:{{var wsdl.handler}}Binding">
+            <soap:address location="{{var wsdl.url}}" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+
+
