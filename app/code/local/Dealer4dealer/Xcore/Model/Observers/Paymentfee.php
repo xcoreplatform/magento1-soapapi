@@ -27,28 +27,38 @@ class Dealer4dealer_Xcore_Model_Observers_Paymentfee
      */
     public function dealer4dealerXcoreSalesOrderPaymentFee(Varien_Event_Observer $o)
     {
-        $this->_applySysconfPaymentfees($o);
+        $this->_applySysconfPaymentfees($o->getOrder());
 
         return $this;
     }
 
     /**
      * @param Varien_Event_Observer $o
+     * @return Dealer4dealer_Xcore_Model_Observers_Paymentfee
      */
-    protected function _applySysconfPaymentfees(Varien_Event_Observer $o)
+    public function dealer4dealerXcoreSalesOrderCreditmemoPaymentFee(Varien_Event_Observer $o)
     {
-        /* @var $order Mage_Sales_Model_Order */
-        $order  = $o->getOrder();
+        $this->_applySysconfPaymentfees($o->getCreditmemo());
+
+        return $this;
+    }
+
+    /**
+     * @param Mage_Sales_Model_Order|Mage_Sales_Model_Order_Creditmemo $salesObject
+     */
+    protected function _applySysconfPaymentfees($salesObject)
+    {
         /* @var $store Mage_Core_Model_Store */
-        $store  = $order->getStore();
+        $store  = $salesObject->getStore();
         $fees   = Mage::helper('dealer4dealer_xcore')->getPaymentFeesData($store->getId());
+        $posneg = ($salesObject instanceof Mage_Sales_Model_Order_Creditmemo) ? -1 : 1;
 
         /* @var $taxCalculation Mage_Tax_Model_Calculation */
         $taxCalculation = Mage::getModel('tax/calculation');
         /* @var $request Varien_Object */
         $request = $taxCalculation->getRateRequest(
-            $order->getShippingAddress(),
-            $order->getBillingAddress(),
+            $salesObject->getShippingAddress(),
+            $salesObject->getBillingAddress(),
             null,
             $store
         );
@@ -57,19 +67,19 @@ class Dealer4dealer_Xcore_Model_Observers_Paymentfee
         foreach ($fees as $feeData) {
             $percent = $taxCalculation->getRate($request->setProductClassId($feeData['tax_rate']));
 
-            $feeAmount = (float)$order->getData($feeData['amount']);
+            $feeAmount = (float)$salesObject->getData($feeData['amount']);
             if ($feeAmount == 0) { // only add fee lines when amount is more than 0
                 continue;
             }
 
             $paymentFeeObjects[] = Mage::getModel('dealer4dealer_xcore/payment_fee')->setData([
                 'title'         => $feeData['title'],
-                'base_amount'   => (float)$order->getData($feeData['base_amount']),
-                'amount'        => $feeAmount,
+                'base_amount'   => (float)$salesObject->getData($feeData['base_amount']) * $posneg,
+                'amount'        => $feeAmount * $posneg,
                 'tax_rate'      => (float)$percent,
             ]);
         }
 
-        $order->setData('xcore_payment_fees', $paymentFeeObjects);
+        $salesObject->setData('xcore_payment_fees', $paymentFeeObjects);
     }
 }

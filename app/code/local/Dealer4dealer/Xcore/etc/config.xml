@@ -48,6 +48,15 @@
                     </dealer4dealer_xcore_sales_order_payment_fee>
                 </observers>
             </dealer4dealer_xcore_sales_order_payment_fee>
+            <dealer4dealer_xcore_sales_order_creditmemo_payment_fee>
+                <observers>
+                    <dealer4dealer_xcore_sales_creditmemo_payment_fee>
+                        <class>Dealer4dealer_Xcore_Model_Observers_Paymentfee</class>
+                        <method>dealer4dealerXcoreSalesOrderCreditmemoPaymentFee</method>
+                        <type>singleton</type>
+                    </dealer4dealer_xcore_sales_creditmemo_payment_fee>
+                </observers>
+            </dealer4dealer_xcore_sales_order_creditmemo_payment_fee>
         </events>
     </global>
 </config>
