@@ -37,6 +37,11 @@
                     <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
                 </all>
             </complexType>
+            <complexType name="salesOrderInvoiceEntity">
+                <all>
+                    <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
+                </all>
+            </complexType>
             <complexType name="salesOrderCreditmemoEntity">
                 <all>
                     <element name="xcore_base_shipping_discount_amount" type="xsd:string" minOccurs="0" />

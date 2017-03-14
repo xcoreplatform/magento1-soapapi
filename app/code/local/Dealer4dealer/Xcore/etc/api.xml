@@ -146,6 +146,11 @@
                         <title>Custom Sale Attributes</title>
                         <acl>sales/order</acl>
                     </saleAttributes>
+                    <invoiceAttributes translate="title" module="dealer4dealer_xcore">
+                        <method>invoiceAttributes</method>
+                        <title>Custom Invoice Attributes</title>
+                        <acl>sales/order</acl>
+                    </invoiceAttributes>
                     <creditAttributes translate="title" module="dealer4dealer_xcore">
                         <method>creditAttributes</method>
                         <title>Custom Credit Attributes</title>

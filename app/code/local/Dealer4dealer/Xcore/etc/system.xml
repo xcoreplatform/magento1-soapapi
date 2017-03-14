@@ -78,12 +78,31 @@
                         </mapping>
                     </fields>
                 </order>
+                <invoice translate="label" module="dealer4dealer_xcore">
+                    <label>Invoices</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>20</sort_order>
+                    <fields>
+                        <mapping translate="label comment" module="dealer4dealer_xcore">
+                            <label>Custom fields</label>
+                            <comment><![CDATA[Fields correspond to data keys in the invoice object]]></comment>
+                            <frontend_model>dealer4dealer_xcore/adminhtml_system_config_field_invoicemapping</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mapping>
+                    </fields>
+                </invoice>
                 <credit translate="label" module="dealer4dealer_xcore">
                     <label>Credit memos</label>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
-                    <sort_order>20</sort_order>
+                    <sort_order>30</sort_order>
                     <fields>
                         <mapping translate="label comment" module="dealer4dealer_xcore">
                             <label>Custom fields</label>

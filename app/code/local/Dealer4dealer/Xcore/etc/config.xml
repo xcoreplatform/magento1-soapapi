@@ -18,6 +18,7 @@
             <sales>
                 <rewrite>
                     <order_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Api_V2</order_api_v2>
+                    <order_invoice_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Invoice_Api_V2</order_invoice_api_v2>
                     <order_creditmemo_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2</order_creditmemo_api_v2>
                 </rewrite>
             </sales>
