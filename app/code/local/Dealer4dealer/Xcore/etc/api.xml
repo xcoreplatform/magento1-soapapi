@@ -199,6 +199,7 @@
                 <xcore_version>xcoreVersion</xcore_version>
                 <xcore_custom>xcoreCustom</xcore_custom>
                 <xcore_website>xcoreWebsite</xcore_website>
+                <xcore_sales_order>xcoreSalesOrder</xcore_sales_order>
             </resources_function_prefix>
         </v2>
     </api>
