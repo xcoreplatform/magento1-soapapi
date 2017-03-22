@@ -46,10 +46,19 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
      */
     public function states()
     {
-        $states = Mage::getModel('sales/order_state')->getCollection()
-            ->toOptionArray();
+        $states = Mage::getSingleton('sales/order_config')->getStates();
 
-        return $states;
+        $response = [];
+
+        foreach($states as $key => $value)
+        {
+            $response[] = [
+                'key'   => $key,
+                'value' => $value,
+            ];
+        }
+
+        return $response;
     }
 
     /**
