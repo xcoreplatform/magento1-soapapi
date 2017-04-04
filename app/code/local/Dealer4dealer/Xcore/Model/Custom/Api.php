@@ -28,6 +28,14 @@ class Dealer4dealer_Xcore_Model_Custom_Api extends Mage_Api_Model_Resource_Abstr
     /**
      * @return array
      */
+    public function invoiceAttributes()
+    {
+        return $this->_getMappingsValues(Dealer4dealer_Xcore_Helper_Data::XPATH_INVOICE_COLUMNS_MAPPING);
+    }
+
+    /**
+     * @return array
+     */
     public function creditAttributes()
     {
         return $this->_getMappingsValues(Dealer4dealer_Xcore_Helper_Data::XPATH_CREDIT_COLUMNS_MAPPING);

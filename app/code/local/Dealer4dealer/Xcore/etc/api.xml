@@ -116,6 +116,17 @@
                     </list>
                 </methods>
             </xcore_payment_method>
+            <xcore_shipping_method>
+                <model>dealer4dealer_xcore/shipping_method_api</model>
+                <title>Shipping Methods</title>
+                <methods>
+                    <list translate="title" module="dealer4dealer_xcore">
+                        <method>info</method>
+                        <title>Get a list of shipping methods</title>
+                        <acl>sales/order</acl>
+                    </list>
+                </methods>
+            </xcore_shipping_method>
             <xcore_version>
                 <model>dealer4dealer_xcore/version_api</model>
                 <title>xCore version</title>
@@ -196,6 +207,7 @@
                 <xcore_config>xcoreConfig</xcore_config>
                 <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet</xcore_catalog_product_attribute_set>
                 <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
+                <xcore_shipping_method>xcoreShippingMethod</xcore_shipping_method>
                 <xcore_version>xcoreVersion</xcore_version>
                 <xcore_custom>xcoreCustom</xcore_custom>
                 <xcore_website>xcoreWebsite</xcore_website>

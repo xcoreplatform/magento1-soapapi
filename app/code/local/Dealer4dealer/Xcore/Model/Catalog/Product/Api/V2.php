@@ -28,6 +28,18 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
         return $result;
     }
 
+    public function items($filters = null, $store = null)
+    {
+        $result = parent::items($filters, $store);
+
+        foreach($result as $i => $item) {
+            $result[$i]['updated_at'] = Mage::getResourceModel('catalog/product')->getAttributeRawValue($item['product_id'], 'updated_at');
+            $result[$i]['created_at'] = Mage::getResourceModel('catalog/product')->getAttributeRawValue($item['product_id'], 'created_at');
+        }
+
+        return $result;
+    }
+
     /**
      * @return array
      * @throws Mage_Api_Exception

@@ -23,6 +23,12 @@
                 </complexContent>
             </complexType>
             <!-- Extra fields for existing calls -->
+            <complexType name="catalogProductEntity">
+                <all>
+                    <element name="updated_at" type="xsd:string" minOccurs="0"/>
+                    <element name="created_at" type="xsd:string" minOccurs="0"/>
+                </all>
+            </complexType>
             <complexType name="catalogProductReturnEntity">
                 <all>
                     <element name="tax_rate" type="xsd:float" minOccurs="0"/>
@@ -151,6 +157,13 @@
                     </restriction>
                 </complexContent>
             </complexType>
+            <complexType name="xcoreShippingMethodListResult">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreShippingMethodEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
             <complexType name="xcoreSalesOrderStatesResult">
                 <complexContent>
                     <restriction base="soapenc:Array">
@@ -159,6 +172,12 @@
                 </complexContent>
             </complexType>
             <complexType name="xcorePaymentMethodEntity">
+                <all>
+                    <element name="code" type="xsd:string" minOccurs="1" />
+                    <element name="label" type="xsd:string" minOccurs="1" />
+                </all>
+            </complexType>
+            <complexType name="xcoreShippingMethodEntity">
                 <all>
                     <element name="code" type="xsd:string" minOccurs="1" />
                     <element name="label" type="xsd:string" minOccurs="1" />
@@ -259,6 +278,12 @@
     <message name="xcorePaymentMethodListResponse">
         <part name="result" type="typens:xcorePaymentMethodListResult" />
     </message>
+    <message name="xcoreShippingMethodListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreShippingMethodListResponse">
+        <part name="result" type="typens:xcoreShippingMethodListResult" />
+    </message>
     <message name="xcoreSalesOrderStatesRequest">
         <part name="sessionId" type="xsd:string" />
     </message>
@@ -287,6 +312,12 @@
         <part name="sessionId" type="xsd:string" />
     </message>
     <message name="xcoreCustomSaleAttributesResponse">
+        <part name="result" type="typens:xcoreCustomAttributeArray" />
+    </message>
+    <message name="xcoreCustomInvoiceAttributesRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="xcoreCustomInvoiceAttributesResponse">
         <part name="result" type="typens:xcoreCustomAttributeArray" />
     </message>
     <message name="xcoreCustomCreditAttributesRequest">
@@ -342,6 +373,11 @@
             <input message="typens:xcorePaymentMethodListRequest"/>
             <output message="typens:xcorePaymentMethodListResponse"/>
         </operation>
+        <operation name="xcoreShippingMethodList">
+            <documentation>Group Info</documentation>
+            <input message="typens:xcoreShippingMethodListRequest"/>
+            <output message="typens:xcoreShippingMethodListResponse"/>
+        </operation>
         <operation name="xcoreSalesOrderStates">
             <documentation>Group Info</documentation>
             <input message="typens:xcoreSalesOrderStatesRequest"/>
@@ -366,6 +402,11 @@
             <documentation>List of custom xcore Sale Attributes</documentation>
             <input message="typens:xcoreCustomSaleAttributesRequest"/>
             <output message="typens:xcoreCustomSaleAttributesResponse"/>
+        </operation>
+        <operation name="xcoreCustomInvoiceAttributes">
+            <documentation>List of custom xcore Sale Attributes</documentation>
+            <input message="typens:xcoreCustomInvoiceAttributesRequest"/>
+            <output message="typens:xcoreCustomInvoiceAttributesResponse"/>
         </operation>
         <operation name="xcoreCustomCreditAttributes">
             <documentation>List of custom xcore Credit Attributes</documentation>
@@ -452,6 +493,15 @@
                 <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </output>
         </operation>
+        <operation name="xcoreShippingMethodList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
         <operation name="xcoreSalesOrderStates">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
             <input>
@@ -489,6 +539,15 @@
             </output>
         </operation>
         <operation name="xcoreCustomSaleAttributes">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomInvoiceAttributes">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
             <input>
                 <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
