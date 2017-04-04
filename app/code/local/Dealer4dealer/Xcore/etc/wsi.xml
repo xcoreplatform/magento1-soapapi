@@ -222,19 +222,14 @@
             <xsd:element name="xcoreCatalogProductAttributeSetGroupInfoResponseParam">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element minOccurs="0" maxOccurs="1" name="complexObject" type="typens:xcorePaymentMethodEntity" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="attribute_group_id" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="attribute_set_id" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="attribute_group_name" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sort_order" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="default_id" type="xsd:int" />
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:complexType name="xcoreCatalogProductAttributeSetGroupInfoEntity">
-                <xsd:sequence>
-                    <xsd:element minOccurs="1" maxOccurs="1" name="attribute_group_id" type="xsd:int" />
-                    <xsd:element minOccurs="1" maxOccurs="1" name="attribute_set_id" type="xsd:int" />
-                    <xsd:element minOccurs="1" maxOccurs="1" name="attribute_group_name" type="xsd:string" />
-                    <xsd:element minOccurs="1" maxOccurs="1" name="sort_order" type="xsd:int" />
-                    <xsd:element minOccurs="1" maxOccurs="1" name="default_id" type="xsd:int" />
-                </xsd:sequence>
-            </xsd:complexType>
             <xsd:element name="xcoreVersionInfoRequestParam">
                 <xsd:complexType>
                     <xsd:sequence>
