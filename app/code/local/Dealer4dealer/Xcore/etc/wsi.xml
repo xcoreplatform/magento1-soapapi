@@ -222,7 +222,7 @@
             <xsd:element name="xcoreCatalogProductAttributeSetGroupInfoResponseParam">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element minOccurs="0" maxOccurs="1" name="complexObjectArray" type="typens:xcoreCatalogProductAttributeSetGroupEntity" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:xcoreCatalogProductAttributeSetGroupEntity" />
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
