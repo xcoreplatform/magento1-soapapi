@@ -1,0 +1,3 @@
+<?php
+class Dealer4dealer_Xcore_Model_Shipping_Method_Api_V2 extends Dealer4dealer_Xcore_Model_Shipping_Method_Api
+{ }
