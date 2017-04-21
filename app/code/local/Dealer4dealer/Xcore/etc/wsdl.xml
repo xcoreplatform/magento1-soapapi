@@ -220,6 +220,15 @@
             </complexType>
         </schema>
     </types>
+    <message name="xcoreCatalogProductListRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="filters" type="typens:filters"/>
+        <part name="storeView" type="xsd:string"/>
+        <part name="limit" type="xsd:string"/>
+    </message>
+    <message name="xcoreCatalogProductListResponse">
+        <part name="storeView" type="typens:catalogProductEntityArray"/>
+    </message>
     <message name="xcoreCatalogProductAttributeTierPriceCreateRequest">
         <part name="sessionId" type="xsd:string"/>
         <part name="tierprices" type="typens:xcoreCatalogProductUpdateTierArray"/>
@@ -333,6 +342,11 @@
         <part name="result" type="typens:xcoreWebsiteItemsArray" />
     </message>
     <portType name="{{var wsdl.handler}}PortType">
+        <operation name="xcoreCatalogProductList">
+            <documentation>Retrieve products list by filters and limit</documentation>
+            <input message="typens:xcoreCatalogProductListRequest"/>
+            <output message="typens:xcoreCatalogProductListResponse"/>
+        </operation>
         <operation name="xcoreCatalogProductAttributeTierPriceCreate">
             <documentation>Create tier prices</documentation>
             <input message="typens:xcoreCatalogProductAttributeTierPriceCreateRequest"/>
@@ -421,6 +435,15 @@
     </portType>
     <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="xcoreCatalogProductList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
         <operation name="xcoreCatalogProductAttributeTierPriceCreate">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
             <input>
