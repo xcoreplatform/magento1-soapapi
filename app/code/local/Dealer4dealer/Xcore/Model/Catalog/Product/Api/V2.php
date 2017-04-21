@@ -1,6 +1,54 @@
 <?php
 class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Model_Product_Api_V2
 {
+
+    /**
+     * Retrieve list of products with basic info (id, sku, type, set, name)
+     *
+     * @param null|object|array $filters
+     * @param string|int $store
+     * @param null $limit
+     * @return array
+     */
+    public function items($filters = null, $store = null, $limit = null)
+    {
+        $collection = Mage::getModel('catalog/product')->getCollection()
+            ->addStoreFilter($this->_getStoreId($store))
+            ->addAttributeToSelect('name');
+
+        if($limit) {
+            $collection->setOrder('updated_at', 'ASC');
+            $collection->setPageSize($limit);
+        }
+
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper('api');
+        $filters = $apiHelper->parseFilters($filters, $this->_filtersMap);
+        try {
+            foreach ($filters as $field => $value) {
+                $collection->addFieldToFilter($field, $value);
+            }
+        } catch (Mage_Core_Exception $e) {
+            $this->_fault('filters_invalid', $e->getMessage());
+        }
+        $result = array();
+        foreach ($collection as $product) {
+            $result[] = array(
+                'product_id' => $product->getId(),
+                'sku'        => $product->getSku(),
+                'name'       => $product->getName(),
+                'set'        => $product->getAttributeSetId(),
+                'type'       => $product->getTypeId(),
+                'category_ids' => $product->getCategoryIds(),
+                'website_ids'  => $product->getWebsiteIds(),
+                'updated_at'  => $product->getUpdatedAt(),
+                'created_at'  => $product->getCreatedAt()
+            );
+        }
+        return $result;
+    }
+
+
     /**
      * Retrieve product info and attach the default
      * tax rate based on the tax_class_id.
@@ -28,17 +76,6 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
         return $result;
     }
 
-    public function items($filters = null, $store = null)
-    {
-        $result = parent::items($filters, $store);
-
-        foreach($result as $i => $item) {
-            $result[$i]['updated_at'] = Mage::getResourceModel('catalog/product')->getAttributeRawValue($item['product_id'], 'updated_at');
-            $result[$i]['created_at'] = Mage::getResourceModel('catalog/product')->getAttributeRawValue($item['product_id'], 'created_at');
-        }
-
-        return $result;
-    }
 
     /**
      * @return array
