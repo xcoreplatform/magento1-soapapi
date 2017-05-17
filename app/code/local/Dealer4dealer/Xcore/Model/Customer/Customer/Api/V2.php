@@ -42,6 +42,8 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
             $this->_fault('filters_invalid', $e->getMessage());
         }
 
+        $collection->addAttributeToSort('updated_at', 'ASC');
+
         $listLimit = Mage::helper('dealer4dealer_xcore')->getCustomerListLimit(0);
         $collection->getSelect()->limit($listLimit);
 

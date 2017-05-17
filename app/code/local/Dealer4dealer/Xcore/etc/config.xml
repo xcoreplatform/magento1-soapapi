@@ -62,7 +62,7 @@
     <default>
         <xcore_payment>
             <customer>
-                <list_limit>1000</list_limit>
+                <list_limit>999</list_limit>
             </customer>
         </xcore_payment>
     </default>
