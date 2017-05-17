@@ -143,6 +143,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </mapping>
+                        <list_limit translate="label comment" module="dealer4dealer_xcore">
+                            <label>Collection limit on list</label>
+                            <comment><![CDATA[Limiting the number of records retrieved by the customer api list]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </list_limit>
                     </fields>
                 </customer>
             </groups>
