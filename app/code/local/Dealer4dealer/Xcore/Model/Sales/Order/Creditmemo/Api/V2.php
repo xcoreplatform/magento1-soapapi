@@ -35,6 +35,38 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2 extends Mage_Sales
     }
 
     /**
+     * Retrieve credit memos list. Filtration could be applied
+     *
+     * @param null|object|array $filters
+     * @return array
+     */
+    public function items($filters = null)
+    {
+        $creditmemos = array();
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper('api');
+        $filters = $apiHelper->parseFilters($filters, $this->_attributesMap['creditmemo']);
+        /** @var $creditmemoModel Mage_Sales_Model_Order_Creditmemo */
+        $creditmemoModel = Mage::getModel('sales/order_creditmemo');
+        try {
+            $creditMemoCollection = $creditmemoModel->getFilteredCollectionItems($filters);
+
+            // enable retrieving credits in batches
+            $creditMemoCollection->addAttributeToSort('updated_at', 'ASC');
+
+            $listLimit = Mage::helper('dealer4dealer_xcore')->getCreditListLimit(0);
+            $creditMemoCollection->getSelect()->limit($listLimit);
+
+            foreach ($creditMemoCollection as $creditmemo) {
+                $creditmemos[] = $this->_getAttributes($creditmemo, 'creditmemo');
+            }
+        } catch (Exception $e) {
+            $this->_fault('invalid_filter', $e->getMessage());
+        }
+        return $creditmemos;
+    }
+
+    /**
      * @param Mage_Sales_Model_Order_Creditmemo $creditmemo
      * @return array
      */

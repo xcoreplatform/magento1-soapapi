@@ -22,6 +22,48 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Invoice_Api_V2 extends Mage_Sales_Mo
     }
 
     /**
+     * Retrive invoices list. Filtration could be applied
+     *
+     * @param null|object|array $filters
+     * @return array
+     */
+    public function items($filters = null)
+    {
+        $invoices = array();
+        /** @var $invoiceCollection Mage_Sales_Model_Mysql4_Order_Invoice_Collection */
+        $invoiceCollection = Mage::getResourceModel('sales/order_invoice_collection');
+        $invoiceCollection->addAttributeToSelect('entity_id')
+            ->addAttributeToSelect('order_id')
+            ->addAttributeToSelect('increment_id')
+            ->addAttributeToSelect('created_at')
+            ->addAttributeToSelect('state')
+            ->addAttributeToSelect('grand_total')
+            ->addAttributeToSelect('order_currency_code');
+
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper('api');
+        try {
+            $filters = $apiHelper->parseFilters($filters, $this->_attributesMap['invoice']);
+            foreach ($filters as $field => $value) {
+                $invoiceCollection->addFieldToFilter($field, $value);
+            }
+        } catch (Mage_Core_Exception $e) {
+            $this->_fault('filters_invalid', $e->getMessage());
+        }
+
+        // enable retrieving invoices in batches
+        $invoiceCollection->addAttributeToSort('updated_at', 'ASC');
+
+        $listLimit = Mage::helper('dealer4dealer_xcore')->getInvoiceListLimit(0);
+        $invoiceCollection->getSelect()->limit($listLimit);
+
+        foreach ($invoiceCollection as $invoice) {
+            $invoices[] = $this->_getAttributes($invoice, 'invoice');
+        }
+        return $invoices;
+    }
+
+    /**
      * @param Mage_Sales_Model_Order_Invoice $invoice
      * @return array
      */
