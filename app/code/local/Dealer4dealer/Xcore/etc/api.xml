@@ -6,6 +6,11 @@
                 <model>dealer4dealer_xcore/catalog_product_api</model>
                 <title>Products</title>
                 <methods>
+                    <list translate="title" module="dealer4dealer_xcore">
+                        <title>List of Products</title>
+                        <method>items</method>
+                        <acl>catalog/product/info</acl>
+                    </list>
                     <attributeTierPriceCreate translate="title" module="dealer4dealer_xcore">
                         <title>Create bulk product tier prices</title>
                         <acl>catalog/product/update</acl>
