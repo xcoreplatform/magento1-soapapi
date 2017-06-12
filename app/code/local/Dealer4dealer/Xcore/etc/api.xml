@@ -201,6 +201,16 @@
                     </statuses>
                 </methods>
             </xcore_sales_order>
+            <xcore_sales_order_shipment>
+                <model>dealer4dealer_xcore/sales_order_shipment_api</model>
+                <title>Sales Order Shipment</title>
+                <methods>
+                    <xcoreCreate translate="title" module="sales">
+                        <title>Create new shipment for order with xcore_your_ref</title>
+                        <acl>sales/order/shipment</acl>
+                    </xcoreCreate>
+                </methods>
+            </xcore_sales_order_shipment>
         </resources>
         <v2>
             <resources_function_prefix>
@@ -217,6 +227,7 @@
                 <xcore_custom>xcoreCustom</xcore_custom>
                 <xcore_website>xcoreWebsite</xcore_website>
                 <xcore_sales_order>xcoreSalesOrder</xcore_sales_order>
+                <xcore_sales_order_shipment>xcoreSalesOrderShipment</xcore_sales_order_shipment>
             </resources_function_prefix>
         </v2>
     </api>
