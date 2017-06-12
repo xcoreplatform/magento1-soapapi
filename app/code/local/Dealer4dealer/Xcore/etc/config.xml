@@ -2,10 +2,21 @@
 <config>
     <modules>
         <dealer4dealer_xcore>
-            <version>1.5.0</version>
+            <version>1.6.0</version>
         </dealer4dealer_xcore>
     </modules>
     <global>
+        <resources>
+            <xcore_setup>
+                <setup>
+                    <module>dealer4dealer_xcore</module>
+                    <class>Dealer4dealer_Xcore_Model_Resource_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </xcore_setup>
+        </resources>
         <models>
             <dealer4dealer_xcore>
                 <class>Dealer4dealer_Xcore_Model</class>
@@ -20,6 +31,7 @@
                     <order_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Api_V2</order_api_v2>
                     <order_invoice_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Invoice_Api_V2</order_invoice_api_v2>
                     <order_creditmemo_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2</order_creditmemo_api_v2>
+                    <order_shipment_api_v2>Dealer4dealer_Xcore_Model_Sales_Order_Shipment_Api_V2</order_shipment_api_v2>
                 </rewrite>
             </sales>
             <customer>

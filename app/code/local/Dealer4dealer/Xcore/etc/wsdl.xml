@@ -43,6 +43,11 @@
                     <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
                 </all>
             </complexType>
+            <complexType name="salesOrderShipmentEntity">
+                <all>
+                    <element name="xcore_your_ref" type="xsd:string" minOccurs="0" />
+                </all>
+            </complexType>
             <complexType name="salesOrderInvoiceEntity">
                 <all>
                     <element name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" minOccurs="0" />
@@ -236,6 +241,18 @@
     <message name="xcoreCatalogProductAttributeTierPriceCreateResponse">
         <part name="result" type="typens:catalogProductUpdatePriceResult"/>
     </message>
+    <message name="xcoreSalesOrderShipmentXcoreCreateRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="orderIncrementId" type="xsd:string" />
+        <part name="itemsQty" type="typens:orderItemIdQtyArray" />
+        <part name="comment" type="xsd:string" />
+        <part name="email" type="xsd:int" />
+        <part name="includeComment" type="xsd:int" />
+        <part name="xcoreYourRef" type="xsd:string" />
+    </message>
+    <message name="xcoreSalesOrderShipmentXcoreCreateResponse">
+        <part name="shipmentIncrementId" type="xsd:string" />
+    </message>
     <message name="xcoreTaxClassProductListRequest">
         <part name="sessionId" type="xsd:string"/>
     </message>
@@ -352,6 +369,11 @@
             <input message="typens:xcoreCatalogProductAttributeTierPriceCreateRequest"/>
             <output message="typens:xcoreCatalogProductAttributeTierPriceCreateResponse"/>
         </operation>
+        <operation name="xcoreSalesOrderShipmentXcoreCreate">
+            <documentation>Create new shipment for order with xcore_your_ref</documentation>
+            <input message="typens:xcoreSalesOrderShipmentXcoreCreateRequest"/>
+            <output message="typens:xcoreSalesOrderShipmentXcoreCreateResponse"/>
+        </operation>
         <operation name="xcoreTaxClassProductList">
             <documentation>Create tier prices</documentation>
             <input message="typens:xcoreTaxClassProductListRequest"/>
@@ -445,6 +467,15 @@
             </output>
         </operation>
         <operation name="xcoreCatalogProductAttributeTierPriceCreate">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="xcoreSalesOrderShipmentXcoreCreate">
             <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
             <input>
                 <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
