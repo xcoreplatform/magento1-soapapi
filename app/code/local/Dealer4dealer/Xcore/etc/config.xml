@@ -72,4 +72,20 @@
             </dealer4dealer_xcore_sales_order_creditmemo_payment_fee>
         </events>
     </global>
+    <default>
+        <xcore_payment>
+            <order>
+                <list_limit>999</list_limit>
+            </order>
+            <invoice>
+                <list_limit>999</list_limit>
+            </invoice>
+            <credit>
+                <list_limit>999</list_limit>
+            </credit>
+            <customer>
+                <list_limit>999</list_limit>
+            </customer>
+        </xcore_payment>
+    </default>
 </config>

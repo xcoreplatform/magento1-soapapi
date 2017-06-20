@@ -67,6 +67,49 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
     }
 
     /**
+     * Retrieve customers data
+     *
+     * @param  object|array $filters
+     * @return array
+     */
+    public function items($filters)
+    {
+        $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToSelect('*');
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper('api');
+        $filters = $apiHelper->parseFilters($filters, $this->_mapAttributes);
+        try {
+            foreach ($filters as $field => $value) {
+                $collection->addFieldToFilter($field, $value);
+            }
+        } catch (Mage_Core_Exception $e) {
+            $this->_fault('filters_invalid', $e->getMessage());
+        }
+
+        $collection->addAttributeToSort('updated_at', 'ASC');
+
+        $listLimit = Mage::helper('dealer4dealer_xcore')->getCustomerListLimit(0);
+        $collection->getSelect()->limit($listLimit);
+
+        $result = array();
+        foreach ($collection as $customer) {
+            $data = $customer->toArray();
+            $row  = array();
+            foreach ($this->_mapAttributes as $attributeAlias => $attributeCode) {
+                $row[$attributeAlias] = (isset($data[$attributeCode]) ? $data[$attributeCode] : null);
+            }
+            foreach ($this->getAllowedAttributes($customer) as $attributeCode => $attribute) {
+                if (isset($data[$attributeCode])) {
+                    $row[$attributeCode] = $data[$attributeCode];
+                }
+            }
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
+    /**
      * @param Mage_Customer_Model_Customer $customer
      * @return array
      */

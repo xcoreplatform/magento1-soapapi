@@ -78,4 +78,40 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
         return [];
     }
 
+    /**
+     * @param int $storeId
+     * @return int
+     */
+    public function geOrderListLimit($storeId)
+    {
+        return (int)Mage::getStoreConfig('xcore_payment/order/list_limit', $storeId);
+    }
+
+    /**
+     * @param int $storeId
+     * @return int
+     */
+    public function getInvoiceListLimit($storeId)
+    {
+        return (int)Mage::getStoreConfig('xcore_payment/invoice/list_limit', $storeId);
+    }
+
+    /**
+     * @param int $storeId
+     * @return int
+     */
+    public function getCreditListLimit($storeId)
+    {
+        return (int)Mage::getStoreConfig('xcore_payment/credit/list_limit', $storeId);
+    }
+
+    /**
+     * @param int $storeId
+     * @return int
+     */
+    public function getCustomerListLimit($storeId)
+    {
+        return (int)Mage::getStoreConfig('xcore_payment/customer/list_limit', $storeId);
+    }
+
 }
