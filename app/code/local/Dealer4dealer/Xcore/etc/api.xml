@@ -1,64 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <config>
     <api>
         <resources>
-            <xcore_catalog_product translate="title" module="dealer4dealer_xcore">
-                <model>dealer4dealer_xcore/catalog_product_api</model>
+            <xcore_catalog_product module="dealer4dealer_xcore" translate="title">
                 <title>Products</title>
+                <model>dealer4dealer_xcore/catalog_product_api</model>
                 <methods>
-                    <list translate="title" module="dealer4dealer_xcore">
-                        <title>List of Products</title>
-                        <method>items</method>
-                        <acl>catalog/product/info</acl>
-                    </list>
-                    <attributeTierPriceCreate translate="title" module="dealer4dealer_xcore">
-                        <title>Create bulk product tier prices</title>
+                    <attributeTierPriceCreate module="dealer4dealer_xcore" translate="title">
                         <acl>catalog/product/update</acl>
+                        <title>Create bulk product tier prices</title>
                     </attributeTierPriceCreate>
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>catalog/product/info</acl>
+                        <method>items</method>
+                        <title>List of Products</title>
+                    </list>
                 </methods>
             </xcore_catalog_product>
-            <xcore_tax_class_product>
-                <model>dealer4dealer_xcore/tax_class_product_api</model>
-                <title>Product Tax Classes</title>
-                <methods>
-                    <list translate="title" module="dealer4dealer_xcore">
-                        <method>items</method>
-                        <title>Retrieve a list of product tax classes</title>
-                        <acl>catalog/product/info</acl>
-                    </list>
-                </methods>
-            </xcore_tax_class_product>
             <xcore_catalog_product_attribute>
-                <model>dealer4dealer_xcore/catalog_product_attribute_api</model>
                 <title>Product Attributes</title>
+                <model>dealer4dealer_xcore/catalog_product_attribute_api</model>
                 <methods>
-                    <attributeValues translate="title" module="dealer4dealer_xcore">
-                        <title>List of attribute values</title>
+                    <attributeValues module="dealer4dealer_xcore" translate="title">
                         <acl>catalog/product/info</acl>
+                        <title>List of attribute values</title>
                     </attributeValues>
-                    <tierPriceCreate translate="title" module="dealer4dealer_xcore">
-                        <title>Add product tier prices</title>
+                    <tierPriceCreate module="dealer4dealer_xcore" translate="title">
                         <acl>catalog/product/update</acl>
+                        <title>Add product tier prices</title>
                     </tierPriceCreate>
                 </methods>
                 <faults module="dealer4dealer_xcore">
-                    <partially_updated_tierprices>
-                        <code>300</code>
-                        <message>Could not update all</message>
-                    </partially_updated_tierprices>
                     <invalid_data>
                         <code>301</code>
                         <message>Invalid data</message>
                     </invalid_data>
+                    <partially_updated_tierprices>
+                        <code>300</code>
+                        <message>Could not update all</message>
+                    </partially_updated_tierprices>
                 </faults>
             </xcore_catalog_product_attribute>
             <xcore_catalog_product_attribute_set module="dealer4dealer_xcore">
-                <model>dealer4dealer_xcore/catalog_product_attribute_set_api</model>
                 <title>Product Attribute Sets</title>
+                <model>dealer4dealer_xcore/catalog_product_attribute_set_api</model>
                 <methods>
-                    <groupInfo translate="title" module="dealer4dealer_xcore">
-                        <title>Get the information about a attribute set group</title>
+                    <groupInfo module="dealer4dealer_xcore" translate="title">
                         <acl>catalog/product/attribute/set</acl>
+                        <title>Get the information about a attribute set group</title>
                     </groupInfo>
                 </methods>
                 <faults module="dealer4dealer_xcore">
@@ -68,36 +57,78 @@
                     </not_found>
                 </faults>
             </xcore_catalog_product_attribute_set>
-            <xcore_customer translate="title" module="dealer4dealer_xcore">
-                <model>dealer4dealer_xcore/customer_api</model>
-                <title>Customers</title>
+            <xcore_custom>
+                <title>xCore Custom Attributes</title>
+                <model>dealer4dealer_xcore/custom_api</model>
                 <methods>
-                    <groupCreate translate="title" module="dealer4dealer_xcore">
-                        <title>Create customer group</title>
+                    <creditAttributes module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order</acl>
+                        <method>creditAttributes</method>
+                        <title>Custom Credit Attributes</title>
+                    </creditAttributes>
+                    <customerAttributes module="dealer4dealer_xcore" translate="title">
+                        <acl>customer/info</acl>
+                        <method>customerAttributes</method>
+                        <title>Custom Customer Attributes</title>
+                    </customerAttributes>
+                    <invoiceAttributes module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order</acl>
+                        <method>invoiceAttributes</method>
+                        <title>Custom Invoice Attributes</title>
+                    </invoiceAttributes>
+                    <itemAttributes module="dealer4dealer_xcore" translate="title">
+                        <acl>catalog/product/info</acl>
+                        <method>itemAttributes</method>
+                        <title>Custom Item Attributes</title>
+                    </itemAttributes>
+                    <saleAttributes module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order</acl>
+                        <method>saleAttributes</method>
+                        <title>Custom Sale Attributes</title>
+                    </saleAttributes>
+                </methods>
+            </xcore_custom>
+            <xcore_customer module="dealer4dealer_xcore" translate="title">
+                <title>Customers</title>
+                <model>dealer4dealer_xcore/customer_api</model>
+                <methods>
+                    <groupCreate module="dealer4dealer_xcore" translate="title">
                         <acl>customer/update</acl>
+                        <title>Create customer group</title>
                     </groupCreate>
                 </methods>
                 <faults module="dealer4dealer_xcore">
-                    <tax_classes_not_found>
-                        <code>500</code>
-                        <message>Requested tax classes not found.</message>
-                    </tax_classes_not_found>
                     <customer_group_not_created>
                         <code>501</code>
                         <message>Customer group not created.</message>
                     </customer_group_not_created>
+                    <tax_classes_not_found>
+                        <code>500</code>
+                        <message>Requested tax classes not found.</message>
+                    </tax_classes_not_found>
                 </faults>
             </xcore_customer>
-            <xcore_index translate="title" module="dealer4dealer_xcore">
-                <model>dealer4dealer_xcore/index_api</model>
-                <title>Indexes</title>
+            <xcore_customer_customer module="dealer4dealer_xcore" translate="title">
+                <title>Customers by limit</title>
+                <model>dealer4dealer_xcore/customer_customer_api</model>
                 <methods>
-                    <reindexAll translate="title" module="dealer4dealer_xcore">
-                        <title>Reindex all indexes</title>
-                    </reindexAll>
-                    <reindex translate="title" module="dealer4dealer_xcore">
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>customer/customer/info</acl>
+                        <method>items</method>
+                        <title>Retrieve customers by filters and limit</title>
+                    </list>
+                </methods>
+            </xcore_customer_customer>
+            <xcore_index module="dealer4dealer_xcore" translate="title">
+                <title>Indexes</title>
+                <model>dealer4dealer_xcore/index_api</model>
+                <methods>
+                    <reindex module="dealer4dealer_xcore" translate="title">
                         <title>Reindex specific index</title>
                     </reindex>
+                    <reindexAll module="dealer4dealer_xcore" translate="title">
+                        <title>Reindex all indexes</title>
+                    </reindexAll>
                 </methods>
                 <faults module="dealer4dealer_xcore">
                     <reindex_all_failed>
@@ -111,123 +142,127 @@
                 </faults>
             </xcore_index>
             <xcore_payment_method>
-                <model>dealer4dealer_xcore/payment_method_api</model>
                 <title>Payment Methods</title>
+                <model>dealer4dealer_xcore/payment_method_api</model>
                 <methods>
-                    <list translate="title" module="dealer4dealer_xcore">
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order</acl>
                         <method>info</method>
                         <title>Get a list of payment methods</title>
-                        <acl>sales/order</acl>
                     </list>
                 </methods>
             </xcore_payment_method>
-            <xcore_shipping_method>
-                <model>dealer4dealer_xcore/shipping_method_api</model>
-                <title>Shipping Methods</title>
-                <methods>
-                    <list translate="title" module="dealer4dealer_xcore">
-                        <method>info</method>
-                        <title>Get a list of shipping methods</title>
-                        <acl>sales/order</acl>
-                    </list>
-                </methods>
-            </xcore_shipping_method>
-            <xcore_version>
-                <model>dealer4dealer_xcore/version_api</model>
-                <title>xCore version</title>
-                <methods>
-                    <info translate="title" module="dealer4dealer_xcore">
-                        <method>info</method>
-                        <title>xCore version</title>
-                        <acl>core/store/info</acl>
-                    </info>
-                </methods>
-            </xcore_version>
-            <xcore_custom>
-                <model>dealer4dealer_xcore/custom_api</model>
-                <title>xCore Custom Attributes</title>
-                <methods>
-                    <itemAttributes translate="title" module="dealer4dealer_xcore">
-                        <method>itemAttributes</method>
-                        <title>Custom Item Attributes</title>
-                        <acl>catalog/product/info</acl>
-                    </itemAttributes>
-                    <customerAttributes translate="title" module="dealer4dealer_xcore">
-                        <method>customerAttributes</method>
-                        <title>Custom Customer Attributes</title>
-                        <acl>customer/info</acl>
-                    </customerAttributes>
-                    <saleAttributes translate="title" module="dealer4dealer_xcore">
-                        <method>saleAttributes</method>
-                        <title>Custom Sale Attributes</title>
-                        <acl>sales/order</acl>
-                    </saleAttributes>
-                    <invoiceAttributes translate="title" module="dealer4dealer_xcore">
-                        <method>invoiceAttributes</method>
-                        <title>Custom Invoice Attributes</title>
-                        <acl>sales/order</acl>
-                    </invoiceAttributes>
-                    <creditAttributes translate="title" module="dealer4dealer_xcore">
-                        <method>creditAttributes</method>
-                        <title>Custom Credit Attributes</title>
-                        <acl>sales/order</acl>
-                    </creditAttributes>
-                </methods>
-            </xcore_custom>
-            <xcore_website>
-                <model>dealer4dealer_xcore/website_api</model>
-                <title>Websites</title>
-                <methods>
-                    <items translate="title" module="dealer4dealer_xcore">
-                        <method>items</method>
-                        <title>List of websites</title>
-                        <acl>core/store/info</acl>
-                    </items>
-                </methods>
-            </xcore_website>
             <xcore_sales_order>
-                <model>dealer4dealer_xcore/sales_order_api</model>
                 <title>Sales Order</title>
+                <model>dealer4dealer_xcore/sales_order_api</model>
                 <methods>
-                    <states translate="title" module="dealer4dealer_xcore">
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order/info</acl>
+                        <method>items</method>
+                        <title>Retrieve list of orders by filters and limit</title>
+                    </list>
+                    <states module="dealer4dealer_xcore" translate="title">
+                        <acl>core/store/info</acl>
                         <method>states</method>
                         <title>List of sales order states</title>
-                        <acl>core/store/info</acl>
                     </states>
-                    <statuses translate="title" module="dealer4dealer_xcore">
+                    <statuses module="dealer4dealer_xcore" translate="title">
+                        <acl>core/store/info</acl>
                         <method>statuses</method>
                         <title>List of sales order statuses</title>
-                        <acl>core/store/info</acl>
                     </statuses>
                 </methods>
             </xcore_sales_order>
-            <xcore_sales_order_shipment>
-                <model>dealer4dealer_xcore/sales_order_shipment_api</model>
-                <title>Sales Order Shipment</title>
+            <xcore_sales_order_creditmemo>
+                <title>Sales Order Creditmemo</title>
+                <model>dealer4dealer_xcore/sales_order_creditmemo_api</model>
                 <methods>
-                    <xcoreCreate translate="title" module="sales">
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order/creditmemo/list</acl>
+                        <method>items</method>
+                        <title>Retrieve list of credit memos by filters and limit</title>
+                    </list>
+                </methods>
+            </xcore_sales_order_creditmemo>
+            <xcore_sales_order_shipment>
+                <title>Sales Order Shipment</title>
+                <model>dealer4dealer_xcore/sales_order_shipment_api</model>
+                <methods>
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order/shipment/list</acl>
+                        <method>items</method>
+                        <title>Retrieve list of shipments by filters and limit</title>
+                    </list>
+                    <xcoreCreate module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order/shipment/create</acl>
                         <title>Create new shipment for order with xcore_your_ref</title>
-                        <acl>sales/order/shipment</acl>
                     </xcoreCreate>
                 </methods>
             </xcore_sales_order_shipment>
+            <xcore_shipping_method>
+                <title>Shipping Methods</title>
+                <model>dealer4dealer_xcore/shipping_method_api</model>
+                <methods>
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order</acl>
+                        <method>info</method>
+                        <title>Get a list of shipping methods</title>
+                    </list>
+                </methods>
+            </xcore_shipping_method>
+            <xcore_tax_class_product>
+                <title>Product Tax Classes</title>
+                <model>dealer4dealer_xcore/tax_class_product_api</model>
+                <methods>
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>catalog/product/info</acl>
+                        <method>items</method>
+                        <title>Retrieve a list of product tax classes</title>
+                    </list>
+                </methods>
+            </xcore_tax_class_product>
+            <xcore_version>
+                <title>xCore version</title>
+                <model>dealer4dealer_xcore/version_api</model>
+                <methods>
+                    <info module="dealer4dealer_xcore" translate="title">
+                        <acl>core/store/info</acl>
+                        <method>info</method>
+                        <title>xCore version</title>
+                    </info>
+                </methods>
+            </xcore_version>
+            <xcore_website>
+                <title>Websites</title>
+                <model>dealer4dealer_xcore/website_api</model>
+                <methods>
+                    <items module="dealer4dealer_xcore" translate="title">
+                        <acl>core/store/info</acl>
+                        <method>items</method>
+                        <title>List of websites</title>
+                    </items>
+                </methods>
+            </xcore_website>
         </resources>
         <v2>
             <resources_function_prefix>
                 <xcore_catalog_product>xcoreCatalogProduct</xcore_catalog_product>
-                <xcore_tax_class_product>xcoreTaxClassProduct</xcore_tax_class_product>
                 <xcore_catalog_product_attribute>xcoreCatalogProductAttribute</xcore_catalog_product_attribute>
-                <xcore_customer>xcoreCustomer</xcore_customer>
-                <xcore_index>xcoreIndex</xcore_index>
+                <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet
+                </xcore_catalog_product_attribute_set>
                 <xcore_config>xcoreConfig</xcore_config>
-                <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet</xcore_catalog_product_attribute_set>
-                <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
-                <xcore_shipping_method>xcoreShippingMethod</xcore_shipping_method>
-                <xcore_version>xcoreVersion</xcore_version>
                 <xcore_custom>xcoreCustom</xcore_custom>
-                <xcore_website>xcoreWebsite</xcore_website>
+                <xcore_customer>xcoreCustomer</xcore_customer>
+                <xcore_customer_customer>xcoreCustomerCustomer</xcore_customer_customer>
+                <xcore_index>xcoreIndex</xcore_index>
+                <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
                 <xcore_sales_order>xcoreSalesOrder</xcore_sales_order>
+                <xcore_sales_order_creditmemo>xcoreSalesOrderCreditmemo</xcore_sales_order_creditmemo>
                 <xcore_sales_order_shipment>xcoreSalesOrderShipment</xcore_sales_order_shipment>
+                <xcore_shipping_method>xcoreShippingMethod</xcore_shipping_method>
+                <xcore_tax_class_product>xcoreTaxClassProduct</xcore_tax_class_product>
+                <xcore_version>xcoreVersion</xcore_version>
+                <xcore_website>xcoreWebsite</xcore_website>
             </resources_function_prefix>
         </v2>
     </api>

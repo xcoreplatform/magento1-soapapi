@@ -2,7 +2,7 @@
 <config>
     <modules>
         <dealer4dealer_xcore>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dealer4dealer_xcore>
     </modules>
     <global>
@@ -36,6 +36,7 @@
             </sales>
             <customer>
                 <rewrite>
+                    <api_v2>Dealer4dealer_Xcore_Model_Customer_Api_V2</api_v2>
                     <customer_api_v2>Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2</customer_api_v2>
                 </rewrite>
             </customer>

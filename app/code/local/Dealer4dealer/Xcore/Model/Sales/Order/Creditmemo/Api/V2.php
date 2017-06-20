@@ -2,6 +2,38 @@
 class Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2 extends Mage_Sales_Model_Order_Creditmemo_Api_V2
 {
     /**
+     * Retrieve credit memos list. Filtration could be applied. Also, limit.
+     *
+     * @param null|object|array $filters
+     * @param null $limit
+     * @return array
+     */
+    public function items($filters = null, $limit = null)
+    {
+        $creditmemos = array();
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper('api');
+        $filters = $apiHelper->parseFilters($filters, $this->_attributesMap['creditmemo']);
+        /** @var $creditmemoModel Mage_Sales_Model_Order_Creditmemo */
+        $creditmemoModel = Mage::getModel('sales/order_creditmemo');
+        try {
+            $creditMemoCollection = $creditmemoModel->getFilteredCollectionItems($filters);
+
+            if($limit) {
+                $creditMemoCollection->setOrder('updated_at', 'ASC');
+                $creditMemoCollection->setPageSize($limit);
+            }
+
+            foreach ($creditMemoCollection as $creditmemo) {
+                $creditmemos[] = $this->_getAttributes($creditmemo, 'creditmemo');
+            }
+        } catch (Exception $e) {
+            $this->_fault('invalid_filter', $e->getMessage());
+        }
+        return $creditmemos;
+    }
+
+    /**
      * Add custom fields to the sales order api.
      * See README.md for more information.
      *
