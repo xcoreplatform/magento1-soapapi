@@ -131,6 +131,19 @@
                     </restriction>
                 </complexContent>
             </complexType>
+            <complexType name="xcoreCustomAttributeOption">
+                <all>
+                    <element minOccurs="1" name="key" type="xsd:string"/>
+                    <element minOccurs="1" name="value" type="xsd:string"/>
+                </all>
+            </complexType>
+            <complexType name="xcoreCustomAttributeOptionsArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreCustomAttributeOption[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
             <complexType name="xcorePaymentMethodEntity">
                 <all>
                     <element minOccurs="1" name="code" type="xsd:string"/>
@@ -291,6 +304,13 @@
     <message name="xcoreCustomItemAttributesResponse">
         <part name="result" type="typens:xcoreCustomAttributeArray"/>
     </message>
+    <message name="xcoreCustomItemAttributeOptionsRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="attribute" type="xsd:string"/>
+    </message>
+    <message name="xcoreCustomItemAttributeOptionsResponse">
+        <part name="result" type="typens:xcoreCustomAttributeOptionsArray"/>
+    </message>
     <message name="xcoreCustomSaleAttributesRequest">
         <part name="sessionId" type="xsd:string"/>
     </message>
@@ -432,6 +452,11 @@
             <documentation>List of custom xcore Item Attributes</documentation>
             <input message="typens:xcoreCustomItemAttributesRequest"/>
             <output message="typens:xcoreCustomItemAttributesResponse"/>
+        </operation>
+        <operation name="xcoreCustomItemAttributeOptions">
+            <documentation>List of custom xcore Item Attribute Options</documentation>
+            <input message="typens:xcoreCustomItemAttributeOptionsRequest"/>
+            <output message="typens:xcoreCustomItemAttributeOptionsResponse"/>
         </operation>
         <operation name="xcoreCustomSaleAttributes">
             <documentation>List of custom xcore Sale Attributes</documentation>
@@ -583,6 +608,15 @@
             </output>
         </operation>
         <operation name="xcoreCustomItemAttributes">
+            <input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
+            </input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
+            </output>
+        </operation>
+        <operation name="xcoreCustomItemAttributeOptions">
             <input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
             </input>

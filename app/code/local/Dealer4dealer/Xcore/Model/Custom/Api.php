@@ -10,6 +10,37 @@ class Dealer4dealer_Xcore_Model_Custom_Api extends Mage_Api_Model_Resource_Abstr
     }
 
     /**
+     * @param $attribute
+     * @return array
+     */
+    public function itemAttributeOptions($attribute)
+    {
+        // Get the mapped attribute
+        $mappings = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_PRODUCT_COLUMNS_MAPPING);
+        foreach($mappings as $mapping) {
+            if($mapping['exact_key'] == $attribute) {
+                $attribute = $mapping['column'];
+            }
+        }
+
+        // Get the options
+        $options = [];
+        $attribute = Mage::getSingleton('eav/config')
+            ->getAttribute(Mage_Catalog_Model_Product::ENTITY, $attribute);
+        if ($attribute->usesSource()) {
+            $sourceOptions = $attribute->getSource()->getAllOptions(false);
+            foreach($sourceOptions as $sourceOption) {
+                $options[] = [
+                    'key'       => $sourceOption['value'],
+                    'value'     => $sourceOption['label']
+                ];
+            }
+        }
+
+        return $options;
+    }
+
+    /**
      * @return array
      */
     public function customerAttributes()
