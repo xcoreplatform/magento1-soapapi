@@ -72,6 +72,17 @@
                     <xsd:element maxOccurs="unbounded" minOccurs="0" name="complexObjectArray" type="typens:xcoreCustomAttribute" />
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:complexType name="xcoreCustomAttributeOption">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" name="key" type="xsd:string" />
+                    <xsd:element minOccurs="1" name="value" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcoreCustomAttributeOptionArray">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="complexObjectArray" type="typens:xcoreCustomAttributeOption" />
+                </xsd:sequence>
+            </xsd:complexType>
             <xsd:complexType name="xcorePaymentMethodEntity">
                 <xsd:sequence>
                     <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string" />
@@ -283,6 +294,21 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="xcoreCustomItemAttributeOptionsRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="attribute" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomItemAttributeOptionsResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreCustomAttributeOptionArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
             <xsd:element name="xcoreCustomSaleAttributesRequestParam">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -479,6 +505,12 @@
     <wsdl:message name="xcoreCustomItemAttributesResponse">
         <wsdl:part element="typens:xcoreCustomItemAttributesResponseParam" name="parameters" />
     </wsdl:message>
+    <wsdl:message name="xcoreCustomItemAttributeOptionsRequest">
+        <wsdl:part element="typens:xcoreCustomItemAttributeOptionsRequestParam" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomItemAttributeOptionsResponse">
+        <wsdl:part element="typens:xcoreCustomItemAttributeOptionsResponseParam" name="parameters" />
+    </wsdl:message>
     <wsdl:message name="xcoreCustomSaleAttributesRequest">
         <wsdl:part element="typens:xcoreCustomSaleAttributesRequestParam" name="parameters" />
     </wsdl:message>
@@ -579,6 +611,11 @@
             <wsdl:documentation>List of custom xcore Item Attributes</wsdl:documentation>
             <wsdl:input message="typens:xcoreCustomItemAttributesRequest" />
             <wsdl:output message="typens:xcoreCustomItemAttributesResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomItemAttributeOptions">
+            <wsdl:documentation>List of custom xcore Item Attribute Options</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCustomItemAttributeOptionsRequest" />
+            <wsdl:output message="typens:xcoreCustomItemAttributeOptionsResponse" />
         </wsdl:operation>
         <wsdl:operation name="xcoreCustomSaleAttributes">
             <wsdl:documentation>List of custom xcore Sale Attributes</wsdl:documentation>
@@ -688,6 +725,15 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="xcoreCustomItemAttributes">
+            <wsdl:input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <wsdl:output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCustomItemAttributeOptions">
             <wsdl:input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
             </wsdl:input>

@@ -76,6 +76,11 @@
                         <method>invoiceAttributes</method>
                         <title>Custom Invoice Attributes</title>
                     </invoiceAttributes>
+                    <itemAttributeOptions module="dealer4dealer_xcore" translate="title">
+                        <acl>catalog/product/info</acl>
+                        <method>itemAttributeOptions</method>
+                        <title>Custom Item Attribute Options</title>
+                    </itemAttributeOptions>
                     <itemAttributes module="dealer4dealer_xcore" translate="title">
                         <acl>catalog/product/info</acl>
                         <method>itemAttributes</method>
