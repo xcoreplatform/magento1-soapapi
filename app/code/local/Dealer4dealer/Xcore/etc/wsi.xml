@@ -178,6 +178,23 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="xcoreCatalogProductListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="filters" type="typens:filters" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="storeView" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="limit" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCatalogProductListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:catalogProductEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
             <xsd:element name="xcoreCatalogProductAttributeSetGroupInfoRequestParam">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -205,6 +222,22 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="result" type="typens:xcoreCustomAttributeArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomerCustomerListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="filters" type="typens:filters" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="limit" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreCustomerCustomerListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:customerCustomerEntityArray" />
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -314,6 +347,8 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element maxOccurs="1" minOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="filters" type="typens:filters" />
+                        <xsd:element maxOccurs="1" minOccurs="0" name="limit" type="xsd:string" />
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -396,6 +431,18 @@
             </xsd:element>
         </xsd:schema>
     </wsdl:types>
+    <wsdl:message name="xcoreCustomerCustomerListRequest">
+        <wsdl:part element="typens:xcoreCustomerCustomerListRequestParam" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCustomerCustomerListResponse">
+        <wsdl:part element="typens:xcoreCustomerCustomerListResponseParam" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCatalogProductListRequest">
+        <wsdl:part element="typens:xcoreCatalogProductListRequestParam" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="xcoreCatalogProductListResponse">
+        <wsdl:part element="typens:xcoreCatalogProductListResponseParam" name="parameters" />
+    </wsdl:message>
     <wsdl:message name="xcoreCatalogProductAttributeSetGroupInfoRequest">
         <wsdl:part element="typens:xcoreCatalogProductAttributeSetGroupInfoRequestParam" name="parameters" />
     </wsdl:message>
@@ -493,6 +540,16 @@
         <wsdl:part element="typens:xcoreWebsiteItemsResponseParam" name="parameters" />
     </wsdl:message>
     <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="xcoreCustomerCustomerList">
+            <wsdl:documentation>Customer List</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCustomerCustomerListRequest" />
+            <wsdl:output message="typens:xcoreCustomerCustomerListResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCatalogProductList">
+            <wsdl:documentation>Product List</wsdl:documentation>
+            <wsdl:input message="typens:xcoreCatalogProductListRequest" />
+            <wsdl:output message="typens:xcoreCatalogProductListResponse" />
+        </wsdl:operation>
         <wsdl:operation name="xcoreCatalogProductAttributeSetGroupInfo">
             <wsdl:documentation>Group Info</wsdl:documentation>
             <wsdl:input message="typens:xcoreCatalogProductAttributeSetGroupInfoRequest" />
@@ -576,6 +633,24 @@
     </wsdl:portType>
     <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="xcoreCustomerCustomerList">
+            <wsdl:input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <wsdl:output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreCatalogProductList">
+            <wsdl:input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <wsdl:output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="xcoreCatalogProductAttributeSetGroupInfo">
             <wsdl:input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
