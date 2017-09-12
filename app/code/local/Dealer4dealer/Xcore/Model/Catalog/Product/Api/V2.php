@@ -12,6 +12,7 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
      */
     public function items($filters = null, $store = null, $limit = null)
     {
+        /** @var Mage_Catalog_Model_Resource_Product_Collection $collection */
         $collection = Mage::getModel('catalog/product')->getCollection()
             ->addStoreFilter($this->_getStoreId($store))
             ->addAttributeToSelect('name');
@@ -76,6 +77,59 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
         return $result;
     }
 
+    /**
+     * Create new product.
+     *
+     * @param string $type
+     * @param int $set
+     * @param string $sku
+     * @param array $productData
+     * @param string $store
+     * @return int
+     */
+    public function create($type, $set, $sku, $productData, $store = null)
+    {
+        $productId = parent::create($type, $set, $sku, $productData, $store);
+
+        if($productData->xcore_custom_attributes) {
+            $customAttributes = $productData->xcore_custom_attributes;
+            $product = Mage::getModel('catalog/product')->load($productId);
+            if($product->getId()) {
+                foreach($customAttributes as $attribute) {
+                    $customAttribute = $this->_getCustomAttributeMapping($attribute->key);
+                    if($customAttribute['column']) {
+                        $product->setData($customAttribute['column'], $attribute->value);
+                    }
+                }
+                $product->save();
+            }
+        }
+        return $productId;
+    }
+
+    /**
+     * Update product data
+     *
+     * @param int|string $productId
+     * @param array $productData
+     * @param string|int $store
+     * @return boolean
+     */
+    public function update($productId, $productData, $store = null, $identifierType = null)
+    {
+        if($productData->xcore_custom_attributes) {
+            $customAttributes = $productData->xcore_custom_attributes;
+            foreach($customAttributes as $attribute) {
+                $customAttribute = $this->_getCustomAttributeMapping($attribute->key);
+                if($customAttribute['column']) {
+                    $productData->{$customAttribute['column']} = $attribute->value;
+                }
+            }
+        }
+
+        return parent::update($productId, $productData, $store, $identifierType);
+    }
+
 
     /**
      * @return array
@@ -130,14 +184,6 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
         foreach ($mapping as $column) {
             $value = $product->getData($column['column']);
 
-            // Get the frontend value instead of option value
-            if($value) {
-                $attribute = $product->getResource()->getAttribute($column['column']);
-                if ($attribute) {
-                    $value = $attribute->getFrontend()->getValue($product);
-                }
-            }
-
             /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
             $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
             $response[] = $customAttributes->setData([
@@ -147,6 +193,19 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Api_V2 extends Mage_Catalog_Mode
         }
 
         return $response;
+    }
+
+    protected function _getCustomAttributeMapping($customAttribute)
+    {
+        $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_PRODUCT_COLUMNS_MAPPING);
+
+        foreach ($mapping as $column) {
+            if($column['exact_key'] == $customAttribute) {
+                return $column;
+            }
+        }
+
+        return null;
     }
 
     /**

@@ -27,6 +27,11 @@
                     <element minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray"/>
                 </all>
             </complexType>
+            <complexType name="catalogProductCreateEntity">
+                <all>
+                    <element minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray"/>
+                </all>
+            </complexType>
             <complexType name="catalogProductUpdateTierResult">
                 <all>
                     <element name="success" type="typens:ArrayOfString"/>
