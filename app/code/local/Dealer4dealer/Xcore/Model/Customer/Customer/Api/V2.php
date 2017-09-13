@@ -46,6 +46,56 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
     }
 
     /**
+     * Create new customer
+     *
+     * @param array $customerData
+     * @return int
+     */
+    public function create($customerData)
+    {
+        $customerId = parent::create($customerData);
+
+        if($customerId) {
+            if ($customerData->xcore_custom_attributes) {
+                $customAttributes = $customerData->xcore_custom_attributes;
+                $customer = Mage::getModel('customer/customer')->load($customerId);
+                foreach ($customAttributes as $attribute) {
+                    $customAttribute = $this->_getCustomAttributeMapping($attribute->key);
+                    if ($customAttribute['column']) {
+                        $customer->setData($customAttribute['column'], $attribute->value);
+                    }
+                }
+                $customer->save();
+            }
+        }
+        return $customerId;
+    }
+
+    /**
+     * Update customer data
+     *
+     * @param int $customerId
+     * @param array $customerData
+     * @return boolean
+     */
+    public function update($customerId, $customerData)
+    {
+        if($customerData->xcore_custom_attributes) {
+            $customAttributes = $customerData->xcore_custom_attributes;
+            foreach($customAttributes as $attribute) {
+                $customAttribute = $this->_getCustomAttributeMapping($attribute->key);
+                if($customAttribute['column']) {
+                    $customerData->{$customAttribute['column']} = $attribute->value;
+                }
+            }
+        }
+
+        return parent::update($customerId, $customerData);;
+    }
+
+
+
+    /**
      * Retrieve customer data
      *
      * @param int $customerId
@@ -95,6 +145,19 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
         }
 
         return $response;
+    }
+
+    protected function _getCustomAttributeMapping($customAttribute)
+    {
+        $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_CUSTOMER_COLUMNS_MAPPING);
+
+        foreach ($mapping as $column) {
+            if($column['exact_key'] == $customAttribute) {
+                return $column;
+            }
+        }
+
+        return null;
     }
 
     /**

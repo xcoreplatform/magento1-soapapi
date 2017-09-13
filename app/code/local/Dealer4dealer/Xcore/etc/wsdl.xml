@@ -56,6 +56,11 @@
                     <element minOccurs="0" name="vat_id" type="xsd:string"/>
                 </all>
             </complexType>
+            <complexType name="customerCustomerEntityToCreate">
+                <all>
+                    <element minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray"/>
+                </all>
+            </complexType>
             <complexType name="customerCustomerEntity">
                 <all>
                     <element minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray"/>
