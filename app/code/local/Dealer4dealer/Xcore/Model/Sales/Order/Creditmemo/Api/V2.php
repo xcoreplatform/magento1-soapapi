@@ -58,11 +58,6 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2 extends Mage_Sales
             $result['xcore_payment_fees'][] = $paymentFee->toArray();
         }
 
-        /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttribute */
-        foreach ($this->_getCustomAttributes($creditmemo) as $customAttribute) {
-            $result['xcore_custom_attributes'][] = $customAttribute->toArray();
-        }
-
         return $result;
     }
 
@@ -79,27 +74,6 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2 extends Mage_Sales
         }
 
         return array();
-    }
-
-    /**
-     * @param Mage_Sales_Model_Order_Creditmemo $creditmemo
-     * @return array
-     */
-    protected function _getCustomAttributes($creditmemo)
-    {
-        $mapping = Mage::helper('dealer4dealer_xcore')->getMappingData(Dealer4dealer_Xcore_Helper_Data::XPATH_CREDIT_COLUMNS_MAPPING, $creditmemo->getStoreId());
-
-        $response = [];
-        foreach ($mapping as $column) {
-            /** @var Dealer4dealer_Xcore_Model_Custom_Attribute $customAttributes */
-            $customAttributes = Mage::getModel('dealer4dealer_xcore/custom_attribute');
-            $response[] = $customAttributes->setData([
-                'key'       => $column['exact_key'],
-                'value'     => $creditmemo->getData($column['column'])
-            ]);
-        }
-
-        return $response;
     }
 
     /**
