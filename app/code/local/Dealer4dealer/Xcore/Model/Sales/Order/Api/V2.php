@@ -19,6 +19,10 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
         /** @var $orderCollection Mage_Sales_Model_Mysql4_Order_Collection */
         $orderCollection = Mage::getModel("sales/order")->getCollection();
 
+        if (Mage::getStoreConfigFlag(Dealer4dealer_Xcore_Helper_Data::XPATH_ORDER_USE_LIMIT)) {
+            $limit = (int)Mage::getStoreConfig(Dealer4dealer_Xcore_Helper_Data::XPATH_ORDER_LIMIT_AMOUNT);
+        }
+
         if($limit) {
             $orderCollection->setOrder('updated_at', 'ASC');
             $orderCollection->setPageSize($limit);

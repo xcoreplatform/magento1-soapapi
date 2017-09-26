@@ -72,4 +72,13 @@
             </dealer4dealer_xcore_sales_order_creditmemo_payment_fee>
         </events>
     </global>
+
+    <default>
+        <xcore_sales>
+            <order>
+                <usecollectionlimit>0</usecollectionlimit>
+                <collectionlimit>60</collectionlimit>
+            </order>
+        </xcore_sales>
+    </default>
 </config>
