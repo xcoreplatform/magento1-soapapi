@@ -54,6 +54,15 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * @return bool
+     */
+    public function isD4DAgent()
+    {
+        return Mage::helper('core/http')->getHttpUserAgent() === 'xCore/Dealer4Dealer';
+
+    }
+
+    /**
      * @param null|int $storeId
      * @return array
      */
