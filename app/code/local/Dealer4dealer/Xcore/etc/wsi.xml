@@ -395,6 +395,26 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="xcoreSalesOrderShipmentXcoreCreateRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="orderIncrementId" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="itemsQty" type="typens:orderItemIdQtyArray" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="comment" type="xsd:string" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="email" type="xsd:int" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="includeComment" type="xsd:int" />
+                        <xsd:element maxOccurs="1" minOccurs="1" name="xcoreYourRef" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreSalesOrderShipmentXcoreCreateResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="result" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
             <xsd:element name="xcoreSalesOrderStatesRequestParam">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -551,6 +571,12 @@
     <wsdl:message name="xcoreSalesOrderShipmentListResponse">
         <wsdl:part element="typens:xcoreSalesOrderShipmentListResponseParam" name="parameters" />
     </wsdl:message>
+    <wsdl:message name="xcoreSalesOrderShipmentXcoreCreateRequest">
+        <wsdl:part element="typens:xcoreSalesOrderShipmentXcoreCreateRequestParam" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="xcoreSalesOrderShipmentXcoreCreateResponse">
+        <wsdl:part element="typens:xcoreSalesOrderShipmentXcoreCreateResponseParam" name="parameters" />
+    </wsdl:message>
     <wsdl:message name="xcoreSalesOrderStatesRequest">
         <wsdl:part element="typens:xcoreSalesOrderStatesRequestParam" name="parameters" />
     </wsdl:message>
@@ -651,6 +677,11 @@
             <wsdl:documentation>Group Info</wsdl:documentation>
             <wsdl:input message="typens:xcoreSalesOrderShipmentListRequest" />
             <wsdl:output message="typens:xcoreSalesOrderShipmentListResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="xcoreSalesOrderShipmentXcoreCreate">
+            <wsdl:documentation>Group Info</wsdl:documentation>
+            <wsdl:input message="typens:xcoreSalesOrderShipmentXcoreCreateRequest" />
+            <wsdl:output message="typens:xcoreSalesOrderShipmentXcoreCreateResponse" />
         </wsdl:operation>
         <wsdl:operation name="xcoreSalesOrderStates">
             <wsdl:documentation>Group Info</wsdl:documentation>
@@ -789,6 +820,15 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="xcoreSalesOrderShipmentList">
+            <wsdl:input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <wsdl:output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreSalesOrderShipmentXcoreCreate">
             <wsdl:input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
             </wsdl:input>
