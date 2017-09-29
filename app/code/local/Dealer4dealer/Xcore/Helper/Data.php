@@ -5,6 +5,8 @@ class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
     const CUSTOM_ATTRIBUTE_FIELD    = 'xcore_custom_attributes';
     const XPATH_PAYMENT_FEE_MAPPING = 'xcore_payment/fee/mapping';
     const XPATH_ORDER_COLUMNS_MAPPING = 'xcore_sales/order/mapping';
+    const XPATH_ORDER_USE_LIMIT = 'xcore_sales/order/usecollectionlimit';
+    const XPATH_ORDER_LIMIT_AMOUNT = 'xcore_sales/order/collectionlimit';
     const XPATH_INVOICE_COLUMNS_MAPPING = 'xcore_sales/invoice/mapping';
     const XPATH_CREDIT_COLUMNS_MAPPING = 'xcore_sales/credit/mapping';
     const XPATH_CUSTOMER_COLUMNS_MAPPING = 'xcore_customers/customer/mapping';
