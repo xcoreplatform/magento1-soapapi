@@ -29,15 +29,6 @@
                                     <xcore_payment>
                                         <title>Dealer4Dealer - xCore</title>
                                     </xcore_payment>
-                                    <xcore_sales>
-                                        <title>Dealer4Dealer - Sales settings</title>
-                                    </xcore_sales>
-                                    <xcore_customers>
-                                        <title>Dealer4Dealer - Customer settings</title>
-                                    </xcore_customers>
-                                    <xcore_products>
-                                        <title>Dealer4Dealer - Product settings</title>
-                                    </xcore_products>
                                 </children>
                             </config>
                         </children>
