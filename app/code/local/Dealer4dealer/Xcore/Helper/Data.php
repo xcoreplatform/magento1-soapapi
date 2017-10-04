@@ -2,13 +2,7 @@
 class Dealer4dealer_Xcore_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const PAYMENT_FIELD             = 'xcore_payment_fees';
-    const CUSTOM_ATTRIBUTE_FIELD    = 'xcore_custom_attributes';
     const XPATH_PAYMENT_FEE_MAPPING = 'xcore_payment/fee/mapping';
-    const XPATH_ORDER_COLUMNS_MAPPING = 'xcore_sales/order/mapping';
-    const XPATH_INVOICE_COLUMNS_MAPPING = 'xcore_sales/invoice/mapping';
-    const XPATH_CREDIT_COLUMNS_MAPPING = 'xcore_sales/credit/mapping';
-    const XPATH_CUSTOMER_COLUMNS_MAPPING = 'xcore_customers/customer/mapping';
-    const XPATH_PRODUCT_COLUMNS_MAPPING = 'xcore_products/product/mapping';
 
     /**
      * Init a payment fee model.

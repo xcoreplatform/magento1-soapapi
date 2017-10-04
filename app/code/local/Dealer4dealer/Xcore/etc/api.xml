@@ -57,42 +57,6 @@
                     </not_found>
                 </faults>
             </xcore_catalog_product_attribute_set>
-            <xcore_custom>
-                <title>xCore Custom Attributes</title>
-                <model>dealer4dealer_xcore/custom_api</model>
-                <methods>
-                    <creditAttributes module="dealer4dealer_xcore" translate="title">
-                        <acl>sales/order</acl>
-                        <method>creditAttributes</method>
-                        <title>Custom Credit Attributes</title>
-                    </creditAttributes>
-                    <customerAttributes module="dealer4dealer_xcore" translate="title">
-                        <acl>customer/info</acl>
-                        <method>customerAttributes</method>
-                        <title>Custom Customer Attributes</title>
-                    </customerAttributes>
-                    <invoiceAttributes module="dealer4dealer_xcore" translate="title">
-                        <acl>sales/order</acl>
-                        <method>invoiceAttributes</method>
-                        <title>Custom Invoice Attributes</title>
-                    </invoiceAttributes>
-                    <itemAttributeOptions module="dealer4dealer_xcore" translate="title">
-                        <acl>catalog/product/info</acl>
-                        <method>itemAttributeOptions</method>
-                        <title>Custom Item Attribute Options</title>
-                    </itemAttributeOptions>
-                    <itemAttributes module="dealer4dealer_xcore" translate="title">
-                        <acl>catalog/product/info</acl>
-                        <method>itemAttributes</method>
-                        <title>Custom Item Attributes</title>
-                    </itemAttributes>
-                    <saleAttributes module="dealer4dealer_xcore" translate="title">
-                        <acl>sales/order</acl>
-                        <method>saleAttributes</method>
-                        <title>Custom Sale Attributes</title>
-                    </saleAttributes>
-                </methods>
-            </xcore_custom>
             <xcore_customer module="dealer4dealer_xcore" translate="title">
                 <title>Customers</title>
                 <model>dealer4dealer_xcore/customer_api</model>
