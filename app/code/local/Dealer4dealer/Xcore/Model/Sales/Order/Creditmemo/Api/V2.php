@@ -84,9 +84,5 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Creditmemo_Api_V2 extends Mage_Sales
         Mage::dispatchEvent('dealer4dealer_xcore_sales_order_creditmemo_payment_fee', array(
             'creditmemo' => $creditmemo,
         ));
-
-        Mage::dispatchEvent('dealer4dealer_xcore_sales_order_creditmemo_custom_attributes', array(
-            'creditmemo' => $creditmemo,
-        ));
     }
 }

@@ -220,7 +220,6 @@
                 <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet
                 </xcore_catalog_product_attribute_set>
                 <xcore_config>xcoreConfig</xcore_config>
-                <xcore_custom>xcoreCustom</xcore_custom>
                 <xcore_customer>xcoreCustomer</xcore_customer>
                 <xcore_customer_customer>xcoreCustomerCustomer</xcore_customer_customer>
                 <xcore_index>xcoreIndex</xcore_index>
