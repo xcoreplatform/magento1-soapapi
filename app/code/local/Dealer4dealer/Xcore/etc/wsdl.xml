@@ -50,16 +50,6 @@
                     <element minOccurs="0" name="vat_id" type="xsd:string"/>
                 </all>
             </complexType>
-            <complexType name="customerCustomerEntityToCreate">
-                <all>
-                    <element minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray"/>
-                </all>
-            </complexType>
-            <complexType name="customerCustomerEntity">
-                <all>
-                    <element minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray"/>
-                </all>
-            </complexType>
             <complexType name="salesOrderAddressEntity">
                 <all>
                     <element minOccurs="0" name="prefix" type="xsd:string"/>
@@ -114,19 +104,6 @@
                     <element name="sku" type="xsd:string"/>
                     <element minOccurs="0" name="tierPrices" type="typens:xcoreCatalogProductTierPriceEntityArray"/>
                 </all>
-            </complexType>
-            <complexType name="xcoreCustomAttribute">
-                <all>
-                    <element minOccurs="1" name="key" type="xsd:string"/>
-                    <element minOccurs="1" name="value" type="xsd:string"/>
-                </all>
-            </complexType>
-            <complexType name="xcoreCustomAttributeArray">
-                <complexContent>
-                    <restriction base="soapenc:Array">
-                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreCustomAttribute[]"/>
-                    </restriction>
-                </complexContent>
             </complexType>
             <complexType name="xcorePaymentMethodEntity">
                 <all>
@@ -242,12 +219,7 @@
     <message name="xcoreCatalogProductListResponse">
         <part name="storeView" type="typens:catalogProductEntityArray"/>
     </message>
-    <message name="xcoreCustomCustomerAttributesRequest">
-        <part name="sessionId" type="xsd:string"/>
-    </message>
-    <message name="xcoreCustomCustomerAttributesResponse">
-        <part name="result" type="typens:xcoreCustomAttributeArray"/>
-    </message>
+
     <message name="xcoreCustomerCustomerListRequest">
         <part name="sessionId" type="xsd:string"/>
         <part name="filters" type="typens:filters"/>
@@ -262,7 +234,7 @@
         <part name="taxclass" type="xsd:string"/>
     </message>
     <message name="xcoreCustomerGroupCreateResponse">
-        <part name="xcoreerGroups" type="typens:fieldArray"/>
+        <part name="xcoreGroups" type="typens:fieldArray"/>
     </message>
     <message name="xcoreCustomerTaxClassesListRequest">
         <part name="sessionId" type="xsd:string"/>
@@ -468,15 +440,6 @@
             </output>
         </operation>
         <operation name="xcoreCatalogProductList">
-            <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </input>
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
-            <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </output>
-        </operation>
-        <operation name="xcoreCustomCustomerAttributes">
             <input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
             </input>

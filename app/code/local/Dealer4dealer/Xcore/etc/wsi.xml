@@ -18,16 +18,6 @@
                     <xsd:element maxOccurs="1" minOccurs="0" name="vat_id" type="xsd:string" />
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:complexType name="customerCustomerEntityToCreate">
-                <xsd:sequence>
-                    <xsd:element maxOccurs="1" minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" />
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="customerCustomerEntity">
-                <xsd:sequence>
-                    <xsd:element maxOccurs="1" minOccurs="0" name="xcore_custom_attributes" type="typens:xcoreCustomAttributeArray" />
-                </xsd:sequence>
-            </xsd:complexType>
             <xsd:complexType name="salesOrderAddressEntity">
                 <xsd:sequence>
                     <xsd:element maxOccurs="1" minOccurs="0" name="prefix" type="xsd:string" />
@@ -56,17 +46,6 @@
                     <xsd:element maxOccurs="1" minOccurs="0" name="attribute_group_name" type="xsd:string" />
                     <xsd:element maxOccurs="1" minOccurs="0" name="sort_order" type="xsd:int" />
                     <xsd:element maxOccurs="1" minOccurs="0" name="default_id" type="xsd:int" />
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="xcoreCustomAttribute">
-                <xsd:sequence>
-                    <xsd:element minOccurs="1" name="key" type="xsd:string" />
-                    <xsd:element minOccurs="1" name="value" type="xsd:string" />
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="xcoreCustomAttributeArray">
-                <xsd:sequence>
-                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="complexObjectArray" type="typens:xcoreCustomAttribute" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="xcorePaymentMethodEntity">

@@ -151,9 +151,5 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
         Mage::dispatchEvent('dealer4dealer_xcore_sales_order_payment_fee', array(
             'order' => $order,
         ));
-
-        Mage::dispatchEvent('dealer4dealer_xcore_sales_order_custom_attributes', array(
-            'order' => $order,
-        ));
     }
 }
