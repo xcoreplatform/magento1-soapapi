@@ -88,7 +88,7 @@
                     </statuses>
                 </methods>
             </xcore_sales_order>
-            <xcore_sales_order_creditmemo module="dealer4dealer_xcore">
+            <xcore_sales_order_creditmemo>
                 <title>Sales Order Creditmemo</title>
                 <model>dealer4dealer_xcore/sales_order_creditmemo_api</model>
                 <methods>
@@ -125,7 +125,7 @@
                     </list>
                 </methods>
             </xcore_shipping_method>
-            <xcore_tax_class_product module="dealer4dealer_xcore">
+            <xcore_tax_class_product>
                 <title>Product Tax Classes</title>
                 <model>dealer4dealer_xcore/tax_class_product_api</model>
                 <methods>
