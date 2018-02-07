@@ -125,7 +125,17 @@ class Dealer4dealer_Xcore_Model_Sales_Order_Api_V2 extends Mage_Sales_Model_Orde
         $statuses = Mage::getModel('sales/order_status')->getCollection()
             ->toOptionArray();
 
-        return $statuses;
+        $response = [];
+
+        foreach($statuses as $i => $status)
+        {
+            $response[] = [
+                'key'   => $status['value'],
+                'value' => $status['label'],
+            ];
+        }
+
+        return $response;
     }
 
     /**

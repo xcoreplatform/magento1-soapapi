@@ -139,10 +139,23 @@
                     <element minOccurs="1" name="value" type="xsd:string"/>
                 </all>
             </complexType>
+            <complexType name="xcoreSalesOrderStatusesEntity">
+                <all>
+                    <element minOccurs="1" name="key" type="xsd:string"/>
+                    <element minOccurs="1" name="value" type="xsd:string"/>
+                </all>
+            </complexType>
             <complexType name="xcoreSalesOrderStatesResult">
                 <complexContent>
                     <restriction base="soapenc:Array">
                         <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreSalesOrderStatesEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="xcoreSalesOrderStatusesResult">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:xcoreSalesOrderStatusesEntity[]"/>
                     </restriction>
                 </complexContent>
             </complexType>
@@ -303,6 +316,12 @@
     <message name="xcoreSalesOrderStatesResponse">
         <part name="result" type="typens:xcoreSalesOrderStatesResult"/>
     </message>
+    <message name="xcoreSalesOrderStatusesRequest">
+        <part name="sessionId" type="xsd:string"/>
+    </message>
+    <message name="xcoreSalesOrderStatusesResponse">
+        <part name="result" type="typens:xcoreSalesOrderStatusesResult"/>
+    </message>
     <message name="xcoreShippingMethodListRequest">
         <part name="sessionId" type="xsd:string"/>
     </message>
@@ -397,6 +416,11 @@
             <documentation>Group Info</documentation>
             <input message="typens:xcoreSalesOrderStatesRequest"/>
             <output message="typens:xcoreSalesOrderStatesResponse"/>
+        </operation>
+        <operation name="xcoreSalesOrderStatuses">
+            <documentation>Group Info</documentation>
+            <input message="typens:xcoreSalesOrderStatusesRequest"/>
+            <output message="typens:xcoreSalesOrderStatusesResponse"/>
         </operation>
         <operation name="xcoreShippingMethodList">
             <documentation>Group Info</documentation>
@@ -539,6 +563,15 @@
             </output>
         </operation>
         <operation name="xcoreSalesOrderStates">
+            <input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
+            </input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
+            </output>
+        </operation>
+        <operation name="xcoreSalesOrderStatuses">
             <input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
             </input>
