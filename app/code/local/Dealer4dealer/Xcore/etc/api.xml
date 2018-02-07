@@ -2,7 +2,7 @@
 <config>
     <api>
         <resources>
-            <xcore_catalog_product module="dealer4dealer_xcore" translate="title">
+            <xcore_catalog_product translate="title">
                 <title>Products</title>
                 <model>dealer4dealer_xcore/catalog_product_api</model>
                 <methods>
@@ -29,7 +29,7 @@
                     </invalid_data>
                 </faults>
             </xcore_catalog_product_attribute>
-            <xcore_catalog_product_attribute_set module="dealer4dealer_xcore">
+            <xcore_catalog_product_attribute_set>
                 <title>Product Attribute Sets</title>
                 <model>dealer4dealer_xcore/catalog_product_attribute_set_api</model>
                 <methods>
@@ -45,7 +45,7 @@
                     </not_found>
                 </faults>
             </xcore_catalog_product_attribute_set>
-            <xcore_customer_customer module="dealer4dealer_xcore" translate="title">
+            <xcore_customer_customer translate="title">
                 <title>Customers by limit</title>
                 <model>dealer4dealer_xcore/customer_customer_api</model>
                 <methods>
@@ -56,7 +56,7 @@
                     </list>
                 </methods>
             </xcore_customer_customer>
-            <xcore_payment_method module="dealer4dealer_xcore">
+            <xcore_payment_method>
                 <title>Payment Methods</title>
                 <model>dealer4dealer_xcore/payment_method_api</model>
                 <methods>
@@ -67,7 +67,7 @@
                     </list>
                 </methods>
             </xcore_payment_method>
-            <xcore_sales_order module="dealer4dealer_xcore">
+            <xcore_sales_order>
                 <title>Sales Order</title>
                 <model>dealer4dealer_xcore/sales_order_api</model>
                 <methods>
@@ -99,7 +99,7 @@
                     </list>
                 </methods>
             </xcore_sales_order_creditmemo>
-            <xcore_sales_order_shipment module="dealer4dealer_xcore">
+            <xcore_sales_order_shipment>
                 <title>Sales Order Shipment</title>
                 <model>dealer4dealer_xcore/sales_order_shipment_api</model>
                 <methods>
@@ -114,7 +114,7 @@
                     </xcoreCreate>
                 </methods>
             </xcore_sales_order_shipment>
-            <xcore_shipping_method module="dealer4dealer_xcore">
+            <xcore_shipping_method>
                 <title>Shipping Methods</title>
                 <model>dealer4dealer_xcore/shipping_method_api</model>
                 <methods>
@@ -136,7 +136,7 @@
                     </list>
                 </methods>
             </xcore_tax_class_product>
-            <xcore_version module="dealer4dealer_xcore">
+            <xcore_version>
                 <title>xCore version</title>
                 <model>dealer4dealer_xcore/version_api</model>
                 <methods>
@@ -147,7 +147,7 @@
                     </info>
                 </methods>
             </xcore_version>
-            <xcore_website module="dealer4dealer_xcore">
+            <xcore_website>
                 <title>Websites</title>
                 <model>dealer4dealer_xcore/website_api</model>
                 <methods>
