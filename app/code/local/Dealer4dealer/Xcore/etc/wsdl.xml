@@ -216,13 +216,6 @@
         <part name="sort_order" type="xsd:int"/>
         <part name="default_id" type="xsd:int"/>
     </message>
-    <message name="xcoreCatalogProductAttributeTierPriceCreateRequest">
-        <part name="sessionId" type="xsd:string"/>
-        <part name="tierprices" type="typens:xcoreCatalogProductUpdateTierArray"/>
-    </message>
-    <message name="xcoreCatalogProductAttributeTierPriceCreateResponse">
-        <part name="result" type="typens:catalogProductUpdatePriceResult"/>
-    </message>
     <message name="xcoreCatalogProductListRequest">
         <part name="sessionId" type="xsd:string"/>
         <part name="filters" type="typens:filters"/>
@@ -232,7 +225,6 @@
     <message name="xcoreCatalogProductListResponse">
         <part name="storeView" type="typens:catalogProductEntityArray"/>
     </message>
-
     <message name="xcoreCustomerCustomerListRequest">
         <part name="sessionId" type="xsd:string"/>
         <part name="filters" type="typens:filters"/>
@@ -240,33 +232,6 @@
     </message>
     <message name="xcoreCustomerCustomerListResponse">
         <part name="result" type="typens:customerCustomerEntityArray"/>
-    </message>
-    <message name="xcoreCustomerGroupCreateRequest">
-        <part name="sessionId" type="xsd:string"/>
-        <part name="name" type="xsd:string"/>
-        <part name="taxclass" type="xsd:string"/>
-    </message>
-    <message name="xcoreCustomerGroupCreateResponse">
-        <part name="xcoreGroups" type="typens:fieldArray"/>
-    </message>
-    <message name="xcoreCustomerTaxClassesListRequest">
-        <part name="sessionId" type="xsd:string"/>
-    </message>
-    <message name="xcoreCustomerTaxClassesListResponse">
-        <part name="taxclasses" type="typens:fieldArray"/>
-    </message>
-    <message name="xcoreIndexReindexAllRequest">
-        <part name="sessionId" type="xsd:string"/>
-    </message>
-    <message name="xcoreIndexReindexAllResponse">
-        <part name="taxclasses" type="typens:boolean"/>
-    </message>
-    <message name="xcoreIndexReindexRequest">
-        <part name="sessionId" type="xsd:string"/>
-        <part name="start" type="xsd:string"/>
-    </message>
-    <message name="xcoreIndexReindexResponse">
-        <part name="taxclasses" type="typens:boolean"/>
     </message>
     <message name="xcorePaymentMethodListRequest">
         <part name="sessionId" type="xsd:string"/>
@@ -352,11 +317,6 @@
             <input message="typens:xcoreCatalogProductAttributeSetGroupInfoRequest"/>
             <output message="typens:xcoreCatalogProductAttributeSetGroupInfoResponse"/>
         </operation>
-        <operation name="xcoreCatalogProductAttributeTierPriceCreate">
-            <documentation>Create tier prices</documentation>
-            <input message="typens:xcoreCatalogProductAttributeTierPriceCreateRequest"/>
-            <output message="typens:xcoreCatalogProductAttributeTierPriceCreateResponse"/>
-        </operation>
         <operation name="xcoreCatalogProductList">
             <documentation>Retrieve products list by filters and limit</documentation>
             <input message="typens:xcoreCatalogProductListRequest"/>
@@ -366,26 +326,6 @@
             <documentation>Retrieve customers by filters and limit</documentation>
             <input message="typens:xcoreCustomerCustomerListRequest"/>
             <output message="typens:xcoreCustomerCustomerListResponse"/>
-        </operation>
-        <operation name="xcoreCustomerGroupCreate">
-            <documentation>List of product tax classes</documentation>
-            <input message="typens:xcoreCustomerGroupCreateRequest"/>
-            <output message="typens:xcoreCustomerGroupCreateResponse"/>
-        </operation>
-        <operation name="xcoreCustomerTaxClassesList">
-            <documentation>List of product tax classes</documentation>
-            <input message="typens:xcoreCustomerTaxClassesListRequest"/>
-            <output message="typens:xcoreCustomerTaxClassesListResponse"/>
-        </operation>
-        <operation name="xcoreIndexReindex">
-            <documentation>Paged and sorted list of products</documentation>
-            <input message="typens:xcoreIndexReindexRequest"/>
-            <output message="typens:xcoreIndexReindexResponse"/>
-        </operation>
-        <operation name="xcoreIndexReindexAll">
-            <documentation>Paged and sorted list of products</documentation>
-            <input message="typens:xcoreIndexReindexAllRequest"/>
-            <output message="typens:xcoreIndexReindexAllResponse"/>
         </operation>
         <operation name="xcorePaymentMethodList">
             <documentation>Group Info</documentation>
@@ -454,15 +394,6 @@
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
             </output>
         </operation>
-        <operation name="xcoreCatalogProductAttributeTierPriceCreate">
-            <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </input>
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
-            <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </output>
-        </operation>
         <operation name="xcoreCatalogProductList">
             <input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
@@ -473,42 +404,6 @@
             </output>
         </operation>
         <operation name="xcoreCustomerCustomerList">
-            <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </input>
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
-            <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </output>
-        </operation>
-        <operation name="xcoreCustomerGroupCreate">
-            <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </input>
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
-            <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </output>
-        </operation>
-        <operation name="xcoreCustomerTaxClassesList">
-            <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </input>
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
-            <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </output>
-        </operation>
-        <operation name="xcoreIndexReindex">
-            <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </input>
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
-            <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
-            </output>
-        </operation>
-        <operation name="xcoreIndexReindexAll">
             <input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
             </input>

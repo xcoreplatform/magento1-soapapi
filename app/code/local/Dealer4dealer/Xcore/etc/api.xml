@@ -6,10 +6,6 @@
                 <title>Products</title>
                 <model>dealer4dealer_xcore/catalog_product_api</model>
                 <methods>
-                    <attributeTierPriceCreate module="dealer4dealer_xcore" translate="title">
-                        <acl>catalog/product/update</acl>
-                        <title>Create bulk product tier prices</title>
-                    </attributeTierPriceCreate>
                     <list module="dealer4dealer_xcore" translate="title">
                         <acl>catalog/product/info</acl>
                         <method>items</method>
@@ -25,20 +21,12 @@
                         <acl>catalog/product/info</acl>
                         <title>List of attribute values</title>
                     </attributeValues>
-                    <tierPriceCreate module="dealer4dealer_xcore" translate="title">
-                        <acl>catalog/product/update</acl>
-                        <title>Add product tier prices</title>
-                    </tierPriceCreate>
                 </methods>
                 <faults module="dealer4dealer_xcore">
                     <invalid_data>
                         <code>301</code>
                         <message>Invalid data</message>
                     </invalid_data>
-                    <partially_updated_tierprices>
-                        <code>300</code>
-                        <message>Could not update all</message>
-                    </partially_updated_tierprices>
                 </faults>
             </xcore_catalog_product_attribute>
             <xcore_catalog_product_attribute_set module="dealer4dealer_xcore">
@@ -57,26 +45,6 @@
                     </not_found>
                 </faults>
             </xcore_catalog_product_attribute_set>
-            <xcore_customer module="dealer4dealer_xcore" translate="title">
-                <title>Customers</title>
-                <model>dealer4dealer_xcore/customer_api</model>
-                <methods>
-                    <groupCreate module="dealer4dealer_xcore" translate="title">
-                        <acl>customer/update</acl>
-                        <title>Create customer group</title>
-                    </groupCreate>
-                </methods>
-                <faults module="dealer4dealer_xcore">
-                    <customer_group_not_created>
-                        <code>501</code>
-                        <message>Customer group not created.</message>
-                    </customer_group_not_created>
-                    <tax_classes_not_found>
-                        <code>500</code>
-                        <message>Requested tax classes not found.</message>
-                    </tax_classes_not_found>
-                </faults>
-            </xcore_customer>
             <xcore_customer_customer module="dealer4dealer_xcore" translate="title">
                 <title>Customers by limit</title>
                 <model>dealer4dealer_xcore/customer_customer_api</model>
@@ -88,29 +56,7 @@
                     </list>
                 </methods>
             </xcore_customer_customer>
-            <xcore_index module="dealer4dealer_xcore" translate="title">
-                <title>Indexes</title>
-                <model>dealer4dealer_xcore/index_api</model>
-                <methods>
-                    <reindex module="dealer4dealer_xcore" translate="title">
-                        <title>Reindex specific index</title>
-                    </reindex>
-                    <reindexAll module="dealer4dealer_xcore" translate="title">
-                        <title>Reindex all indexes</title>
-                    </reindexAll>
-                </methods>
-                <faults module="dealer4dealer_xcore">
-                    <reindex_all_failed>
-                        <code>600</code>
-                        <message>Error while reindexing</message>
-                    </reindex_all_failed>
-                    <reindex_failed>
-                        <code>601</code>
-                        <message>Error while reindexing</message>
-                    </reindex_failed>
-                </faults>
-            </xcore_index>
-            <xcore_payment_method>
+            <xcore_payment_method module="dealer4dealer_xcore">
                 <title>Payment Methods</title>
                 <model>dealer4dealer_xcore/payment_method_api</model>
                 <methods>
@@ -121,7 +67,7 @@
                     </list>
                 </methods>
             </xcore_payment_method>
-            <xcore_sales_order>
+            <xcore_sales_order module="dealer4dealer_xcore">
                 <title>Sales Order</title>
                 <model>dealer4dealer_xcore/sales_order_api</model>
                 <methods>
@@ -142,7 +88,7 @@
                     </statuses>
                 </methods>
             </xcore_sales_order>
-            <xcore_sales_order_creditmemo>
+            <xcore_sales_order_creditmemo module="dealer4dealer_xcore">
                 <title>Sales Order Creditmemo</title>
                 <model>dealer4dealer_xcore/sales_order_creditmemo_api</model>
                 <methods>
@@ -153,7 +99,7 @@
                     </list>
                 </methods>
             </xcore_sales_order_creditmemo>
-            <xcore_sales_order_shipment>
+            <xcore_sales_order_shipment module="dealer4dealer_xcore">
                 <title>Sales Order Shipment</title>
                 <model>dealer4dealer_xcore/sales_order_shipment_api</model>
                 <methods>
@@ -168,7 +114,7 @@
                     </xcoreCreate>
                 </methods>
             </xcore_sales_order_shipment>
-            <xcore_shipping_method>
+            <xcore_shipping_method module="dealer4dealer_xcore">
                 <title>Shipping Methods</title>
                 <model>dealer4dealer_xcore/shipping_method_api</model>
                 <methods>
@@ -179,7 +125,7 @@
                     </list>
                 </methods>
             </xcore_shipping_method>
-            <xcore_tax_class_product>
+            <xcore_tax_class_product module="dealer4dealer_xcore">
                 <title>Product Tax Classes</title>
                 <model>dealer4dealer_xcore/tax_class_product_api</model>
                 <methods>
@@ -190,7 +136,7 @@
                     </list>
                 </methods>
             </xcore_tax_class_product>
-            <xcore_version>
+            <xcore_version module="dealer4dealer_xcore">
                 <title>xCore version</title>
                 <model>dealer4dealer_xcore/version_api</model>
                 <methods>
@@ -201,7 +147,7 @@
                     </info>
                 </methods>
             </xcore_version>
-            <xcore_website>
+            <xcore_website module="dealer4dealer_xcore">
                 <title>Websites</title>
                 <model>dealer4dealer_xcore/website_api</model>
                 <methods>
@@ -219,10 +165,8 @@
                 <xcore_catalog_product_attribute>xcoreCatalogProductAttribute</xcore_catalog_product_attribute>
                 <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet
                 </xcore_catalog_product_attribute_set>
-                <xcore_config>xcoreConfig</xcore_config>
                 <xcore_customer>xcoreCustomer</xcore_customer>
                 <xcore_customer_customer>xcoreCustomerCustomer</xcore_customer_customer>
-                <xcore_index>xcoreIndex</xcore_index>
                 <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
                 <xcore_sales_order>xcoreSalesOrder</xcore_sales_order>
                 <xcore_sales_order_creditmemo>xcoreSalesOrderCreditmemo</xcore_sales_order_creditmemo>
