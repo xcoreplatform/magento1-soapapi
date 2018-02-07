@@ -5,8 +5,9 @@ class Dealer4dealer_Xcore_Model_Customer_Customer_Api_V2 extends Mage_Customer_M
      * Retrieve customers data by filters and limit
      *
      * @param  object|array $filters
-     * @param null $limit
+     * @param null          $limit
      * @return array
+     * @throws Mage_Api_Exception
      */
     public function items($filters, $limit = null)
     {

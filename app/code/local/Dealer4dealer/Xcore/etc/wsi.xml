@@ -83,6 +83,17 @@
                     <xsd:element maxOccurs="unbounded" minOccurs="0" name="complexObjectArray" type="typens:xcoreSalesOrderStateEntity" />
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:complexType name="xcoreSalesOrderStatusEntity">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="key" type="xsd:string" />
+                    <xsd:element maxOccurs="1" minOccurs="1" name="value" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="xcoreSalesOrderStatusesResult">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="complexObjectArray" type="typens:xcoreSalesOrderStatusEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
             <xsd:complexType name="xcoreShippingMethodEntity">
                 <xsd:sequence>
                     <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string" />
@@ -299,6 +310,20 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            <xsd:element name="xcoreSalesOrderStatusesRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="xcoreSalesOrderStatusesResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="result" type="typens:xcoreSalesOrderStatusesResult" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
             <xsd:element name="xcoreShippingMethodListRequestParam">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -411,6 +436,12 @@
     <wsdl:message name="xcoreSalesOrderStatesResponse">
         <wsdl:part element="typens:xcoreSalesOrderStatesResponseParam" name="parameters" />
     </wsdl:message>
+    <wsdl:message name="xcoreSalesOrderStatusesRequest">
+        <wsdl:part element="typens:xcoreSalesOrderStatusesRequestParam" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="xcoreSalesOrderStatusesResponse">
+        <wsdl:part element="typens:xcoreSalesOrderStatusesResponseParam" name="parameters" />
+    </wsdl:message>
     <wsdl:message name="xcoreShippingMethodListRequest">
         <wsdl:part element="typens:xcoreShippingMethodListRequestParam" name="parameters" />
     </wsdl:message>
@@ -480,6 +511,11 @@
             <wsdl:documentation>Group Info</wsdl:documentation>
             <wsdl:input message="typens:xcoreSalesOrderStatesRequest" />
             <wsdl:output message="typens:xcoreSalesOrderStatesResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="xcoreSalesOrderStatuses">
+            <wsdl:documentation>Group Info</wsdl:documentation>
+            <wsdl:input message="typens:xcoreSalesOrderStatusesRequest" />
+            <wsdl:output message="typens:xcoreSalesOrderStatusesResponse" />
         </wsdl:operation>
         <wsdl:operation name="xcoreShippingMethodList">
             <wsdl:documentation>Group Info</wsdl:documentation>
@@ -577,6 +613,15 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="xcoreSalesOrderStates">
+            <wsdl:input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <wsdl:output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="xcoreSalesOrderStatuses">
             <wsdl:input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded" />
             </wsdl:input>
