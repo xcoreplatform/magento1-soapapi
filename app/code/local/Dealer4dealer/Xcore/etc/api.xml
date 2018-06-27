@@ -88,6 +88,17 @@
                     </statuses>
                 </methods>
             </xcore_sales_order>
+            <xcore_sales_order_invoice>
+                <title>Sales Order Invoice</title>
+                <model>dealer4dealer_xcore/sales_order_invoice_api</model>
+                <methods>
+                    <list module="dealer4dealer_xcore" translate="title">
+                        <acl>sales/order/invoice/list</acl>
+                        <method>items</method>
+                        <title>Retrieve list of invoices by filters and limit</title>
+                    </list>
+                </methods>
+            </xcore_sales_order_invoice>
             <xcore_sales_order_creditmemo>
                 <title>Sales Order Creditmemo</title>
                 <model>dealer4dealer_xcore/sales_order_creditmemo_api</model>
@@ -169,6 +180,7 @@
                 <xcore_customer_customer>xcoreCustomerCustomer</xcore_customer_customer>
                 <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
                 <xcore_sales_order>xcoreSalesOrder</xcore_sales_order>
+                <xcore_sales_order_invoice>xcoreSalesOrderInvoice</xcore_sales_order_invoice>
                 <xcore_sales_order_creditmemo>xcoreSalesOrderCreditmemo</xcore_sales_order_creditmemo>
                 <xcore_sales_order_shipment>xcoreSalesOrderShipment</xcore_sales_order_shipment>
                 <xcore_shipping_method>xcoreShippingMethod</xcore_shipping_method>

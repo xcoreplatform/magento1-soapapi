@@ -255,6 +255,14 @@
     <message name="xcoreSalesOrderListResponse">
         <part name="result" type="typens:salesOrderListEntityArray"/>
     </message>
+    <message name="xcoreSalesOrderInvoiceListRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="filters" type="typens:filters"/>
+        <part name="limit" type="xsd:string"/>
+    </message>
+    <message name="xcoreSalesOrderInvoiceListResponse">
+        <part name="result" type="typens:salesOrderInvoiceEntityArray"/>
+    </message>
     <message name="xcoreSalesOrderShipmentListRequest">
         <part name="sessionId" type="xsd:string"/>
         <part name="filters" type="typens:filters"/>
@@ -333,7 +341,7 @@
             <output message="typens:xcorePaymentMethodListResponse"/>
         </operation>
         <operation name="xcoreSalesOrderCreditmemoList">
-            <documentation>Retrieve list of orders by filters and limit</documentation>
+            <documentation>Retrieve list of credits by filters and limit</documentation>
             <input message="typens:xcoreSalesOrderCreditmemoListRequest"/>
             <output message="typens:xcoreSalesOrderCreditmemoListResponse"/>
         </operation>
@@ -341,6 +349,11 @@
             <documentation>Retrieve list of orders by filters and limit</documentation>
             <input message="typens:xcoreSalesOrderListRequest"/>
             <output message="typens:xcoreSalesOrderListResponse"/>
+        </operation>
+        <operation name="xcoreSalesOrderInvoiceList">
+            <documentation>Retrieve list of invoices by filters and limit</documentation>
+            <input message="typens:xcoreSalesOrderInvoiceListRequest"/>
+            <output message="typens:xcoreSalesOrderInvoiceListResponse"/>
         </operation>
         <operation name="xcoreSalesOrderShipmentList">
             <documentation>Retrieve list of orders by filters and limit</documentation>
@@ -431,6 +444,15 @@
             </output>
         </operation>
         <operation name="xcoreSalesOrderList">
+            <input>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
+            </input>
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <output>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
+            </output>
+        </operation>
+        <operation name="xcoreSalesOrderInvoiceList">
             <input>
                 <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:{{var wsdl.name}}" use="encoded"/>
             </input>
