@@ -34,7 +34,7 @@
                 <model>dealer4dealer_xcore/catalog_product_attribute_set_api</model>
                 <methods>
                     <groupInfo module="dealer4dealer_xcore" translate="title">
-                        <acl>catalog/product/attribute/set</acl>
+                        <acl>catalog/product/attribute/set/group_info</acl>
                         <title>Get the information about a attribute set group</title>
                     </groupInfo>
                 </methods>
