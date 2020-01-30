@@ -34,7 +34,7 @@
                 <model>dealer4dealer_xcore/catalog_product_attribute_set_api</model>
                 <methods>
                     <groupInfo module="dealer4dealer_xcore" translate="title">
-                        <acl>catalog/product/attribute/set</acl>
+                        <acl>catalog/product/attribute/set/group_info</acl>
                         <title>Get the information about a attribute set group</title>
                     </groupInfo>
                 </methods>
@@ -174,8 +174,7 @@
             <resources_function_prefix>
                 <xcore_catalog_product>xcoreCatalogProduct</xcore_catalog_product>
                 <xcore_catalog_product_attribute>xcoreCatalogProductAttribute</xcore_catalog_product_attribute>
-                <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet
-                </xcore_catalog_product_attribute_set>
+                <xcore_catalog_product_attribute_set>xcoreCatalogProductAttributeSet</xcore_catalog_product_attribute_set>
                 <xcore_customer>xcoreCustomer</xcore_customer>
                 <xcore_customer_customer>xcoreCustomerCustomer</xcore_customer_customer>
                 <xcore_payment_method>xcorePaymentMethod</xcore_payment_method>
