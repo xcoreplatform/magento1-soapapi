@@ -14,7 +14,6 @@ class Dealer4dealer_Xcore_Model_Catalog_Product_Attribute_Set_Api extends Mage_A
         /** @var Mage_Eav_Model_Entity_Attribute_Group $group */
         $group = Mage::getModel('eav/entity_attribute_group')->getCollection()
             ->addFieldToFilter('attribute_set_id', $attributeSetId)
-            ->addFieldToFilter('attribute_group_name', $attributeSetGroupName)
             ->getFirstItem();
 
         if (!$group->getId()) {
