@@ -76,6 +76,11 @@
                     <element minOccurs="0" name="xcore_your_ref" type="xsd:string"/>
                 </all>
             </complexType>
+            <complexType name="salesOrderItemEntity">
+                <all>
+                    <element minOccurs="0" name="base_price_incl_tax" type="xsd:string" />
+                </all>
+            </complexType>
             <complexType name="xcoreCatalogProductTierPriceEntity">
                 <all>
                     <element minOccurs="0" name="all_groups" type="xsd:int"/>
