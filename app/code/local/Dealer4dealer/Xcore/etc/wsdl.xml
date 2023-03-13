@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <definitions name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:typens="urn:{{var wsdl.name}}" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <types>
-        <schema targetNamespace="urn:Magento" xmlns="http://www.w3.org/2001/XMLSchema">
+        <schema targetNamespace="urn:{{var wsdl.name}}" xmlns="http://www.w3.org/2001/XMLSchema">
             <complexType name="associativeMultiArray">
                 <complexContent>
                     <restriction base="soapenc:Array">
