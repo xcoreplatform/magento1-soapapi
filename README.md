@@ -1,5 +1,5 @@
 # Magento1 Soap Api
-This module extends the soap api of Magento1 and is needed for the usage of the xCore. For more information or support see http://www.dealer4dealer.nl.
+This module extends the soap api of Magento1 and is needed for the usage of the xCore. For more information or support see https://xcore.nl.
 
 ## Payment fees
 To add payment fees (for example surcharges) to the sales order api either use the backend interface
@@ -26,7 +26,7 @@ Navigate to `System > Configuration > Dealer4Dealer xCore > Payment > Payment Me
 ## License
 The MIT License (MIT)
 
-Copyright (c) Dealer4Dealer
+Copyright (c) xCore
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
