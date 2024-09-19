@@ -1,13 +1,13 @@
 {
-  "name": "dealer4dealer/magento1-soapapi",
+  "name": "xcoreplatform/magento1-soapapi",
   "description": "This module extends the soap api of Magento1 and is needed for the usage of the xCore.",
   "type": "magento-module",
-  "homepage": "http://www.dealer4dealer.nl",
+  "homepage": "https://xcore.nl",
   "license": "MIT",
   "authors": [
     {
-      "name": "Dealer4Dealer",
-      "email": "info@linq5.nl"
+      "name": "xCore",
+      "email": "servicedesk@xcore.nl"
     }
   ]
 }
